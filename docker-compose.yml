@@ -6,6 +6,9 @@ services:
     restart: unless-stopped
     ports: ["${PORT:-8443}:8443"]
     env_file: [.env]
+    environment:
+      PORT: 8443                    # inside the container always 8443; PORT in .env is the port on this computer
+      HOST_PORT: ${PORT:-8443}
     volumes:
       - ./data:/app/data
       - ./certs:/app/certs

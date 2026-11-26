@@ -16,11 +16,19 @@ NODE_MAJOR=$(node -p 'process.versions.node.split(".")[0]')
 set -a; . ./.env; set +a
 PORT=${PORT:-8443}
 
+LAN_IP=$( (hostname -I 2>/dev/null || ipconfig getifaddr en0 2>/dev/null || echo 127.0.0.1) | awk '{print $1}')
+# the address riders use (links in emails, Strava's return, the phone remote's QR code): this computer on the LAN unless
+# you've set your own (a public address behind a proxy)
+if [ -z "${PUBLIC_URL:-}" ]; then
+  PUBLIC_URL="https://$LAN_IP:$PORT"
+  if grep -q '^PUBLIC_URL=' .env; then sed -i.bak "s#^PUBLIC_URL=.*#PUBLIC_URL=$PUBLIC_URL#" .env && rm -f .env.bak; else echo "PUBLIC_URL=$PUBLIC_URL" >> .env; fi
+  say "PUBLIC_URL set to $PUBLIC_URL (change it in .env if riders reach this server another way)."
+fi
+
 # 3. data folder (accounts, routes, rides: private, kept out of git)
 mkdir -p data && chmod 700 data
 
 # 4. HTTPS certificate (browsers only allow Bluetooth, USB and the phone remote on https)
-LAN_IP=$( (hostname -I 2>/dev/null || ipconfig getifaddr en0 2>/dev/null || echo 127.0.0.1) | awk '{print $1}')
 if [ ! -f certs/key.pem ]; then
   mkdir -p certs
   if command -v mkcert >/dev/null; then
@@ -61,7 +69,25 @@ ReadWritePaths=$PWD/data
 [Install]
 WantedBy=multi-user.target
 UNIT
-  sudo systemctl daemon-reload && sudo systemctl enable --now rideworld
+  # the route worker (heights, bridges and climbs for every new route) as its own service
+  sudo tee /etc/systemd/system/rideworld-pipeline.service >/dev/null <<UNIT
+[Unit]
+Description=RideWorld route worker
+After=rideworld.service
+[Service]
+WorkingDirectory=$PWD
+EnvironmentFile=$PWD/.env
+ExecStart=$(command -v node) $PWD/tools/pipeline/worker.mjs
+User=$(id -un)
+Restart=on-failure
+Nice=10
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=$PWD/data
+[Install]
+WantedBy=multi-user.target
+UNIT
+  sudo systemctl daemon-reload && sudo systemctl enable --now rideworld rideworld-pipeline
   say "Installed and started: systemctl status rideworld"
   echo "Open https://$LAN_IP:$PORT"
   exit 0

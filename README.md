@@ -70,6 +70,15 @@ Then open **https://&lt;server address&gt;:8443**, accept the certificate warnin
 
 5. Pick a route or world and **Go ride** (or **Simulator** to try it without a trainer: ↑ / ↓ set the power).
 
+## Guides
+
+- **[Admin guide](docs/ADMIN-GUIDE.md)**: everything for whoever runs the server: keys, accounts and email, adding and
+  fixing routes, the route worker, open worlds and the map editor, riding together, training and the coach, problem
+  reports, the apps, backups, updates and troubleshooting.
+- **[Riders' guide](docs/RIDER-GUIDE.md)**: for the people riding: what kit works, connecting it, the three kinds of
+  riding, views, the coach, the phone remote and the keys. It also goes out in the welcome email.
+- **[Building your own open world](docs/BUILDING-WORLDS.md)**.
+
 ## Riding from outside your home network
 
 Put it behind a reverse proxy with a real certificate (Caddy, Nginx Proxy Manager, Traefik) and set `PUBLIC_URL` in `.env`.

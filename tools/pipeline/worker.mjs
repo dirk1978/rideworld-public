@@ -261,7 +261,7 @@ export async function googleOffset(pts, onProgress = () => {}, extra = []) {
   const every = Math.max(1, Math.floor(pts.length / 60)), sample = pts.filter((_, i) => i % every === 0).slice(0, 60);
   const b = await chromium.launch({ args: ['--use-angle=gl-egl', '--disable-gpu-sandbox', '--no-sandbox', '--ignore-gpu-blocklist'] });
   try {
-    const p = await (await b.newContext({ viewport: { width: 640, height: 400 }, extraHTTPHeaders: { Referer: 'https://rideworld.example.org/' } })).newPage();
+    const p = await (await b.newContext({ viewport: { width: 640, height: 400 }, extraHTTPHeaders: { Referer: (process.env.PUBLIC_URL || `https://localhost:${process.env.PORT || 8443}`).replace(/\/?$/, '/') } /* (the Google key's website restriction) */ })).newPage();
     await p.setContent(`<html><head><script>window.CESIUM_BASE_URL='https://cdn.jsdelivr.net/npm/cesium@1.146.0/Build/Cesium/';</script><script src="https://cdn.jsdelivr.net/npm/cesium@1.146.0/Build/Cesium/Cesium.js"></script></head><body style="margin:0"><div id="g" style="width:640px;height:400px"></div></body></html>`);
     await p.waitForFunction(() => window.Cesium, null, { timeout: 60000 });
     const heights = [];

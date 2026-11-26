@@ -1,6 +1,6 @@
-# RideWorld in a container: no dependencies beyond Node itself
+# RideWorld in a container: Node, plus openssl (the first certificate) and ffmpeg (ride clips to MP4)
 FROM node:22-alpine
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl ffmpeg
 WORKDIR /app
 COPY . .
 RUN chmod +x docker-entrypoint.sh && mkdir -p data certs && chown -R node:node /app
