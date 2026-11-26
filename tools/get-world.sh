@@ -24,6 +24,9 @@ tar -xzf "$TMP/w.tar.gz" -C "$TMP"
 mkdir -p data/world data/routes && chmod 700 data
 cp "$TMP"/world/* data/world/
 cp "$TMP"/routes/* data/routes/
+# (before the server's first start there's no route list yet: make it with the starter routes first, as the server would,
+# or they'd never be added)
+[ -s data/routes.json ] || node -e 'require("./lib/routes").seed()'
 # the world's entry in the route list (replacing an older one), then its pre-plotted rides planned on this exact world file
 node -e '
   const fs = require("fs"), f = "data/routes.json", e = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));

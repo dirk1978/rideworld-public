@@ -35,7 +35,9 @@ fi
 
 # 5. the first admin account
 if [ ! -s data/users.json ]; then
-  read -r -p "Admin username [admin]: " U; U=${U:-admin}
+  U=""
+  if [ -t 0 ]; then read -r -p "Admin username [${ADMIN_USER:-admin}]: " U || true; fi # (no keyboard: ADMIN_USER from .env)
+  U=${U:-${ADMIN_USER:-admin}}
   node tools/adduser.js "$U" --admin
   say "Keep that password: sign in with it, then add other riders under Accounts."
 fi
