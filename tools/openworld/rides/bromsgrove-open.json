@@ -1,0 +1,268 @@
+[
+ {
+  "id": "town-loop",
+  "name": "Bromsgrove town loop",
+  "blurb": "An easy spin round the town: the High Street, Sidemoor, Charford and Aston Fields.",
+  "loop": true,
+  "via": [
+   [
+    52.3345,
+    -2.059
+   ],
+   "Sidemoor",
+   "Charford",
+   "Aston Fields"
+  ],
+  "names": [
+   "Bromsgrove town centre",
+   null,
+   null,
+   null
+  ]
+ },
+ {
+  "id": "queens-head",
+  "name": "Stoke Pound and the Queen's Head",
+  "blurb": "Down to the canal at Stoke Pound for the Queen's Head, back by Tardebigge's famous locks.",
+  "loop": true,
+  "via": [
+   [
+    52.3345,
+    -2.059
+   ],
+   "Stoke Heath",
+   "Stoke Prior",
+   "Stoke Pound",
+   "Tardebigge",
+   "Finstall"
+  ],
+  "names": [
+   "Bromsgrove town centre",
+   null,
+   null,
+   null,
+   null,
+   null
+  ]
+ },
+ {
+  "id": "upton-warren",
+  "name": "Upton Warren flats",
+  "blurb": "The flattest ride here: out past Stoke Heath to Upton Warren and back by Stoke Prior.",
+  "loop": true,
+  "via": [
+   "Aston Fields",
+   "Stoke Heath",
+   "Upton Warren",
+   "Stoke Prior"
+  ]
+ },
+ {
+  "id": "tardebigge",
+  "name": "Tardebigge church climb",
+  "blurb": "Up to Tardebigge's hilltop church above the lock flight, and down through Burcot.",
+  "loop": true,
+  "via": [
+   "Aston Fields",
+   "Tardebigge",
+   "Tutnall",
+   "Burcot",
+   "Lickey End",
+   "Finstall"
+  ]
+ },
+ {
+  "id": "lickeys",
+  "name": "The Lickey Hills",
+  "blurb": "Woods and steep lanes: Blackwell, Barnt Green, Cofton Hackett, Rednal and over the Lickeys.",
+  "loop": true,
+  "via": [
+   "Lickey End",
+   "Burcot",
+   "Blackwell",
+   "Barnt Green",
+   "Cofton Hackett",
+   "Rednal",
+   "Marlbrook"
+  ]
+ },
+ {
+  "id": "clent",
+  "name": "Clent Hills",
+  "blurb": "The big one: Fairfield and Belbroughton, up to Clent and the Nimmings, back over Romsley.",
+  "loop": true,
+  "via": [
+   "Catshill",
+   "Fairfield",
+   "Belbroughton",
+   "Clent",
+   "Romsley",
+   "Hunnington",
+   "Lydiate Ash"
+  ]
+ },
+ {
+  "id": "dodford",
+  "name": "Dodford lanes",
+  "blurb": "Quiet lanes west of town: Timberhonger, Dodford, Bournheath and back through Sidemoor.",
+  "loop": true,
+  "via": [
+   "Sidemoor",
+   "Timberhonger",
+   "Dodford",
+   "Bournheath",
+   "Catshill"
+  ]
+ },
+ {
+  "id": "romsley-frankley",
+  "name": "Romsley and Frankley",
+  "blurb": "Rolling country on the edge of Birmingham: Rubery, Frankley, Romsley and Hunnington.",
+  "loop": true,
+  "via": [
+   "Rubery",
+   "Frankley",
+   "Romsley",
+   "Hunnington",
+   "Illey"
+  ]
+ },
+ {
+  "id": "grand-tour",
+  "name": "Grand tour",
+  "blurb": "The whole map in one: the canal at Stoke Pound, Tardebigge, the Lickeys, the Clent Hills and home.",
+  "loop": true,
+  "via": [
+   [
+    52.3345,
+    -2.059
+   ],
+   "Stoke Pound",
+   "Tardebigge",
+   "Barnt Green",
+   "Rednal",
+   "Romsley",
+   "Clent",
+   "Belbroughton",
+   "Dodford"
+  ],
+  "names": [
+   "Bromsgrove town centre",
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ]
+ },
+ {
+  "id": "kenelm-repeats",
+  "name": "Clent KOM repeats",
+  "blurb": "Three times up the Clent Hills: St Kenelm's Pass from Clent village, then down Hagley Wood Lane and round again.",
+  "loop": true,
+  "via": [
+   "Clent",
+   "street:St Kenelms Pass",
+   "street:Hagley Wood Lane",
+   "Clent",
+   "street:St Kenelms Pass",
+   "street:Hagley Wood Lane",
+   "Clent",
+   "street:St Kenelms Pass",
+   "street:Hagley Wood Lane"
+  ]
+ },
+ {
+  "id": "winwood",
+  "name": "Winwood Heath wall",
+  "blurb": "Romsley's monster, twice. A 3 km warm-up mostly downhill by Shut Mill Lane to the bottom, then up Winwood Heath Road, 1.1 km at 10%; round by Romsley and again.",
+  "loop": true,
+  "via": [
+   "Romsley",
+   "street:Shut Mill Lane",
+   [
+    52.404247,
+    -2.076915
+   ],
+   [
+    52.405482,
+    -2.063517
+   ],
+   "Romsley",
+   "street:Shut Mill Lane",
+   [
+    52.404247,
+    -2.076915
+   ],
+   [
+    52.405482,
+    -2.063517
+   ]
+  ],
+  "names": [
+   "Romsley",
+   "Shut Mill Lane",
+   "Winwood Heath Road (bottom)",
+   "Winwood Heath Road (top)",
+   "Romsley",
+   "Shut Mill Lane",
+   "Winwood Heath Road (bottom)",
+   "Winwood Heath Road (top)"
+  ]
+ },
+ {
+  "id": "beacon",
+  "name": "Lickey Beacon climbs",
+  "blurb": "The Lickeys' steepest: Rose Hill, Beacon Lane and Mearse Lane, with the woods all round.",
+  "loop": true,
+  "via": [
+   "Marlbrook",
+   "street:Rose Hill",
+   "Rednal",
+   "street:Beacon Lane",
+   "Lickey End",
+   "street:Mearse Lane",
+   "Blackwell"
+  ]
+ },
+ {
+  "id": "epic",
+  "name": "The Worcestershire Epic",
+  "blurb": "The big day out, every major climb: the canal at Stoke Pound, Tardebigge, Mearse Lane, Beacon Lane and Rose Hill on the Lickeys, Winwood Heath, St Kenelm's Pass and Hagley Wood Lane on the Clents, home by Belbroughton and Dodford.",
+  "loop": true,
+  "via": [
+   [
+    52.3345,
+    -2.059
+   ],
+   "Upton Warren",
+   "Stoke Pound",
+   "Tardebigge",
+   "Finstall",
+   "Burcot",
+   "street:Mearse Lane",
+   "Blackwell",
+   "Barnt Green",
+   "Cofton Hackett",
+   "street:Beacon Lane",
+   "street:Rose Hill",
+   "Rubery",
+   "Frankley",
+   "street:Winwood Heath Road",
+   "Romsley",
+   "street:St Kenelms Pass",
+   "street:Hagley Wood Lane",
+   "Clent",
+   "Belbroughton",
+   "Fairfield",
+   "Dodford",
+   "Timberhonger"
+  ],
+  "names": [
+   "Bromsgrove town centre"
+  ]
+ }
+]

@@ -1,0 +1,54 @@
+{
+ "note": "Bridges drawn by hand (tools/openworld/handbridges.mjs). Coughton Ford footbridge: OSM way 38321990 (bridge=yes, cycleway, unnamed) beside the ford on Coughton Fields Lane over the River Arrow; grey steel lattice footbridge on trestle legs from the owner's Street View captures 2026-11-25 (share photos/to model/alcester ford). River ~48.4-48.6 m; deck 49.5 (about 1 m over the water), ramps to the banks at each end.",
+ "bridges": [
+  {
+   "name": "Coughton Ford footbridge",
+   "near": [
+    52.241049,
+    -1.876584
+   ],
+   "hw": "cycleway",
+   "model": "coughton_footbridge",
+   "dir": "shire",
+   "title": "Coughton Ford",
+   "blurb": "The River Arrow over Coughton Fields Lane, with its footbridge",
+   "origin": [
+    52.241049,
+    -1.876584
+   ],
+   "datum": 48.5,
+   "pts": [
+    [
+     52.241077,
+     -1.876463,
+     48.95,
+     "ramp"
+    ],
+    [
+     52.241069,
+     -1.876497,
+     49.45,
+     "deck"
+    ],
+    [
+     52.241049,
+     -1.876584,
+     49.5,
+     "deck"
+    ],
+    [
+     52.241029,
+     -1.87667,
+     49.45,
+     "deck"
+    ],
+    [
+     52.241021,
+     -1.876704,
+     48.85,
+     "ramp"
+    ]
+   ]
+  }
+ ]
+}

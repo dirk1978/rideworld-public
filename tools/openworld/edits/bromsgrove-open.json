@@ -1,0 +1,4 @@
+{
+ "_": "the owner's corrections to the open world, applied by build.mjs on top of OpenStreetMap (they survive rebuilds). paths: ways to ride [{ pts [[lat, lon]], surf, src }], each end joined to the nearest road within 40 m. From his FIT rides along the canal and round the hills, 2026-11-17 (stretches more than 20 m from the network for 60 m+).",
+ "paths": []
+}

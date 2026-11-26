@@ -1,0 +1,8 @@
+[
+  { "id": "westminster", "name": "Westminster sights", "where": "London",
+    "blurb": "Over Westminster Bridge, past Big Ben, up Whitehall to Trafalgar Square, down The Mall to Buckingham Palace. Flat and full of detail." },
+  { "id": "richmond-park", "name": "Richmond Park loop", "where": "London",
+    "blurb": "The classic London training loop on open park roads, with rolling climbs like Sawyer’s Hill." },
+  { "id": "alpe-dhuez", "name": "Alpe d'Huez", "where": "French Alps",
+    "blurb": "The 21 hairpins from Bourg d’Oisans to the ski station. Long, steep and famous." }
+]

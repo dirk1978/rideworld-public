@@ -1,0 +1,8 @@
+/* self-hosted (Google Fonts, SIL Open Font License), latin subset */
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: italic; font-weight: 700; font-display: swap; src: url('../fonts/BarlowSemiCondensed-italic-700.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: italic; font-weight: 800; font-display: swap; src: url('../fonts/BarlowSemiCondensed-italic-800.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/BarlowSemiCondensed-normal-500.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/BarlowSemiCondensed-normal-600.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('../fonts/BarlowSemiCondensed-normal-700.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 800; font-display: swap; src: url('../fonts/BarlowSemiCondensed-normal-800.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../fonts/Inter-normal-400-800.woff2') format('woff2'); }

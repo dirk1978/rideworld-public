@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060c">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+<title>Map Editor · RideWorld</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Map editor (2026-11-17, the owner: "a map editor would be helpful for open world maps"): correct an open world on a map */
+:root { --bg:#04060c; --panel:rgba(14,18,30,.9); --stroke:rgba(255,255,255,.13); --fg:#f5f7fc; --muted:#a6b0c6; --accent:#ff6a1a;
+  --grad:linear-gradient(120deg,#ff8a1e 0%,#ff5a3c 45%,#ff2e7e 100%); --num:"Barlow Semi Condensed",Inter,system-ui,sans-serif; color-scheme:dark; }
+* { box-sizing:border-box; }
+html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font:14px/1.4 Inter, system-ui, sans-serif; overflow:hidden; }
+#map { position:absolute; inset:0; background:#0a0e19; }
+.panel { position:absolute; z-index:500; background:var(--panel); border:1px solid var(--stroke); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.45); backdrop-filter:blur(10px); }
+#top { left:12px; right:12px; top:12px; display:flex; align-items:center; gap:12px; padding:8px 12px; flex-wrap:wrap; }
+#top h1 { margin:0; font-family:var(--num); font-style:italic; font-weight:800; font-size:22px; text-transform:uppercase; white-space:nowrap; }
+#top h1 b { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+#wname { font-weight:600; color:var(--muted); flex:1 1 120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#state { font-size:12px; color:var(--muted); white-space:nowrap; }
+button, a.btn, select { font:inherit; color:var(--fg); background:rgba(255,255,255,.07); border:1px solid var(--stroke); border-radius:10px; padding:7px 12px; cursor:pointer; text-decoration:none; }
+button:hover, a.btn:hover { background:rgba(255,255,255,.14); }
+button:disabled { opacity:.4; cursor:default; }
+button.go { background:var(--grad); border-color:transparent; font-weight:700; }
+#tools { left:12px; top:76px; width:220px; padding:10px; display:flex; flex-direction:column; gap:7px; }
+#tools h2, #side h2 { margin:2px 2px 4px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
+.tool { text-align:left; border-radius:12px; padding:9px 10px; }
+.tool.on { border-color:var(--accent); background:rgba(255,106,26,.18); }
+.tool small { display:block; color:var(--muted); font-size:11px; }
+#opts { display:flex; flex-direction:column; gap:6px; padding:6px 2px; }
+#side { right:12px; top:76px; bottom:12px; width:300px; padding:10px; display:flex; flex-direction:column; gap:8px; }
+#info { font-size:13px; min-height:40px; }
+#info .k { color:var(--muted); }
+#info .row { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+#list { flex:1; overflow:auto; display:flex; flex-direction:column; gap:4px; }
+.it { display:flex; align-items:center; gap:6px; padding:6px 8px; border-radius:10px; background:rgba(255,255,255,.04); font-size:12px; }
+.it span { flex:1; cursor:pointer; }
+.it button { padding:2px 8px; }
+#hint { left:50%; transform:translateX(-50%); bottom:16px; padding:8px 14px; font-size:13px; }
+#hint:empty { display:none; }
+.legend { font-size:11px; color:var(--muted); display:grid; grid-template-columns:auto 1fr; gap:3px 8px; align-items:center; }
+.legend i { display:inline-block; width:22px; height:4px; border-radius:2px; }
+.arrow { color:#ffd27a; font-size:13px; text-shadow:0 0 3px #000; }
+@media (max-width: 900px) { #side { top:auto; height:40vh; left:12px; right:12px; width:auto; } #tools { width:180px; } }
+</style>
+</head><body>
+<div id="map"></div>
+<div id="top" class="panel">
+  <h1><b>Map</b> editor</h1><span id="wname">Loading…</span>
+  <select id="base"><option value="osm">Street map</option><option value="sat">Satellite</option></select>
+  <span id="state"></span>
+  <button id="undo" disabled title="Undo the last change (Ctrl+Z); while drawing, the last point">↶ Undo</button>
+  <button id="save" class="go" disabled>Save</button>
+  <button id="rebuild" title="Rebuild the world with the saved edits (about 20 s); riders get it on their next load">Rebuild</button>
+  <a class="btn" href="/">Back to RideWorld</a>
+</div>
+<div id="tools" class="panel">
+  <h2>Tools</h2>
+  <button class="tool on" data-tool="inspect">🔍 Inspect<small>click a road or path</small></button>
+  <button class="tool" data-tool="path">➕ Draw a path<small>click along it; its ends join the nearest road</small></button>
+  <button class="tool" data-tool="wall">🧱 Wall or hedge<small>click along it</small></button>
+  <button class="tool" data-tool="remove">✂ Remove a stretch<small>click it: it can't be ridden</small></button>
+  <button class="tool" data-tool="shop">🏪 Shop or pub<small>name it, pick the kind, click the building</small></button>
+  <button class="tool" data-tool="trees">🌳 Remove trees<small>zoom in, click where there are none</small></button>
+  <button class="tool" data-tool="ride">🚲 Ride from here<small>click a spot: a start on the setup screen</small></button>
+  <div id="opts"></div>
+  <h2>Key</h2>
+  <div class="legend">
+    <i style="background:#f4f4f4"></i><span>main roads</span><i style="background:#9aa3b5"></i><span>lanes and streets</span>
+    <i style="background:#c9b48a"></i><span>gravel paths</span><i style="background:#8a6a48"></i><span>dirt / grass paths</span>
+    <i style="background:#cfcfcf;height:2px"></i><span>paved paths</span><i style="background:#4aa3df"></i><span>water</span>
+    <i style="background:#39e07a"></i><span>your paths</span><i style="background:#c0783c"></i><span>your walls / hedges</span>
+    <i style="background:#ff4d6d"></i><span>removed</span>
+  </div>
+</div>
+<div id="side" class="panel">
+  <h2>Selected</h2><div id="info">Click a road or path to see what it is.</div>
+  <h2>Your edits</h2><div id="list"></div>
+</div>
+<div id="hint" class="panel"></div>
+<script type="module" src="js/mapedit.js"></script>
+</body></html>

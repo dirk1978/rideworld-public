@@ -1,0 +1,982 @@
+[
+ {
+  "id": "royal",
+  "name": "Royal London",
+  "blurb": "Trafalgar Square, under Admiralty Arch, down the Mall to Buckingham Palace, Wellington Arch and back along Piccadilly.",
+  "loop": true,
+  "via": [
+   [
+    51.50795,
+    -0.1281
+   ],
+   [
+    51.5056,
+    -0.1325
+   ],
+   [
+    51.502,
+    -0.1405
+   ],
+   [
+    51.5027,
+    -0.1508
+   ],
+   [
+    51.5072,
+    -0.143
+   ],
+   [
+    51.5099,
+    -0.134
+   ]
+  ],
+  "names": [
+   "Trafalgar Square",
+   "The Mall",
+   "Buckingham Palace",
+   "Wellington Arch",
+   "Piccadilly",
+   "Piccadilly Circus"
+  ]
+ },
+ {
+  "id": "westminster",
+  "name": "Westminster and the South Bank",
+  "blurb": "Whitehall to Big Ben and the Abbey, over Westminster Bridge past the London Eye, back over Waterloo Bridge.",
+  "loop": true,
+  "via": [
+   [
+    51.50795,
+    -0.1281
+   ],
+   [
+    51.504,
+    -0.1265
+   ],
+   [
+    51.5007,
+    -0.1263
+   ],
+   [
+    51.501,
+    -0.1185
+   ],
+   [
+    51.504,
+    -0.116
+   ],
+   [
+    51.5065,
+    -0.115
+   ],
+   [
+    51.5105,
+    -0.1185
+   ]
+  ],
+  "names": [
+   "Trafalgar Square",
+   "Whitehall",
+   "Parliament Square",
+   "Westminster Bridge",
+   "the London Eye",
+   "Waterloo Bridge",
+   "the Strand"
+  ]
+ },
+ {
+  "id": "city-tower",
+  "name": "St Paul's, the Tower and Tower Bridge",
+  "blurb": "From St Paul's past the Monument to the Tower of London, over Tower Bridge to the Shard and back over London Bridge.",
+  "loop": true,
+  "via": [
+   [
+    51.5138,
+    -0.099
+   ],
+   [
+    51.5101,
+    -0.086
+   ],
+   [
+    51.5097,
+    -0.0765
+   ],
+   [
+    51.5022,
+    -0.0757
+   ],
+   [
+    51.5045,
+    -0.0865
+   ],
+   [
+    51.5093,
+    -0.0874
+   ],
+   [
+    51.5133,
+    -0.089
+   ]
+  ],
+  "names": [
+   "St Paul's Cathedral",
+   "the Monument",
+   "the Tower of London",
+   "Tower Bridge",
+   "the Shard",
+   "London Bridge (King William Street)",
+   "Bank"
+  ]
+ },
+ {
+  "id": "bridges",
+  "name": "Seven Thames bridges",
+  "blurb": "Zig-zag across the river: Lambeth, Westminster, Waterloo, Blackfriars, Southwark, London Bridge and Tower Bridge.",
+  "loop": false,
+  "via": [
+   [
+    51.496,
+    -0.125
+   ],
+   [
+    51.4945,
+    -0.1215
+   ],
+   [
+    51.501,
+    -0.1185
+   ],
+   [
+    51.5007,
+    -0.1263
+   ],
+   [
+    51.5105,
+    -0.1185
+   ],
+   [
+    51.5065,
+    -0.115
+   ],
+   [
+    51.507,
+    -0.1045
+   ],
+   [
+    51.5113,
+    -0.104
+   ],
+   [
+    51.511,
+    -0.095
+   ],
+   [
+    51.507,
+    -0.0945
+   ],
+   [
+    51.505,
+    -0.088
+   ],
+   [
+    51.5101,
+    -0.086
+   ],
+   [
+    51.5097,
+    -0.0765
+   ],
+   [
+    51.5022,
+    -0.0757
+   ]
+  ],
+  "names": [
+   "Millbank",
+   "Lambeth Bridge",
+   "Westminster Bridge",
+   "Parliament Square",
+   "Waterloo Bridge",
+   "the South Bank",
+   "Blackfriars Bridge",
+   "Blackfriars",
+   "Upper Thames Street",
+   "Southwark Bridge",
+   "London Bridge",
+   "the Monument",
+   "the Tower of London",
+   "Tower Bridge"
+  ]
+ },
+ {
+  "id": "battersea",
+  "name": "Embankment to Battersea",
+  "blurb": "Along Millbank past Tate Britain, over Vauxhall Bridge to Battersea Power Station, back over Chelsea Bridge and through Pimlico.",
+  "loop": true,
+  "via": [
+   [
+    51.5007,
+    -0.1263
+   ],
+   [
+    51.492,
+    -0.1265
+   ],
+   [
+    51.486,
+    -0.124
+   ],
+   [
+    51.4815,
+    -0.138
+   ],
+   [
+    51.4828,
+    -0.1465
+   ],
+   [
+    51.486,
+    -0.15
+   ],
+   [
+    51.4895,
+    -0.142
+   ]
+  ],
+  "names": [
+   "Parliament Square",
+   "Tate Britain",
+   "Vauxhall Bridge",
+   "Nine Elms",
+   "Battersea Power Station",
+   "Chelsea Bridge",
+   "Pimlico"
+  ]
+ },
+ {
+  "id": "kensington",
+  "name": "Knightsbridge and the Albert Hall",
+  "blurb": "Hyde Park Corner, Knightsbridge and Harrods, the museums of Exhibition Road and the Royal Albert Hall.",
+  "loop": true,
+  "via": [
+   [
+    51.5027,
+    -0.1508
+   ],
+   [
+    51.4994,
+    -0.1632
+   ],
+   [
+    51.496,
+    -0.174
+   ],
+   [
+    51.5015,
+    -0.1775
+   ],
+   [
+    51.5025,
+    -0.16
+   ]
+  ],
+  "names": [
+   "Hyde Park Corner",
+   "Harrods",
+   "Exhibition Road",
+   "the Royal Albert Hall",
+   "Knightsbridge"
+  ]
+ },
+ {
+  "id": "chelsea",
+  "name": "Chelsea and Battersea Park",
+  "blurb": "Sloane Square and the King's Road to World's End, over Battersea Bridge, through Battersea Park and back along the Chelsea Embankment.",
+  "loop": true,
+  "via": [
+   [
+    51.4925,
+    -0.1565
+   ],
+   [
+    51.487,
+    -0.17
+   ],
+   [
+    51.4825,
+    -0.181
+   ],
+   [
+    51.479,
+    -0.173
+   ],
+   [
+    51.482,
+    -0.153
+   ],
+   [
+    51.486,
+    -0.15
+   ],
+   [
+    51.485,
+    -0.164
+   ]
+  ],
+  "names": [
+   "Sloane Square",
+   "the King's Road",
+   "World's End",
+   "Battersea Bridge",
+   "Chelsea Bridge Road",
+   "Chelsea Bridge",
+   "the Chelsea Embankment"
+  ]
+ },
+ {
+  "id": "kings-cross",
+  "name": "BT Tower, Regent's Park and King's Cross",
+  "blurb": "Up past the BT Tower to Regent's Park, along to St Pancras and King's Cross, up Pentonville Road to the Angel.",
+  "loop": true,
+  "via": [
+   [
+    51.5152,
+    -0.1418
+   ],
+   [
+    51.5215,
+    -0.1388
+   ],
+   [
+    51.5235,
+    -0.146
+   ],
+   [
+    51.5275,
+    -0.133
+   ],
+   [
+    51.5305,
+    -0.1235
+   ],
+   [
+    51.5323,
+    -0.1058
+   ],
+   [
+    51.52,
+    -0.105
+   ],
+   [
+    51.517,
+    -0.124
+   ]
+  ],
+  "names": [
+   "Oxford Circus",
+   "the BT Tower",
+   "Regent's Park",
+   "Euston",
+   "St Pancras and King's Cross",
+   "the Angel",
+   "Clerkenwell",
+   "Holborn"
+  ]
+ },
+ {
+  "id": "skyline",
+  "name": "City skyline",
+  "blurb": "Among the towers: the Gherkin, the Walkie-Talkie, Bank and the Barbican, with the Shard across the river.",
+  "loop": true,
+  "via": [
+   [
+    51.5133,
+    -0.089
+   ],
+   [
+    51.5144,
+    -0.0803
+   ],
+   [
+    51.5112,
+    -0.0835
+   ],
+   [
+    51.5101,
+    -0.086
+   ],
+   [
+    51.52,
+    -0.094
+   ],
+   [
+    51.5138,
+    -0.099
+   ]
+  ],
+  "names": [
+   "Bank",
+   "the Gherkin",
+   "the Walkie-Talkie",
+   "the Monument",
+   "the Barbican",
+   "St Paul's Cathedral"
+  ]
+ },
+ {
+  "id": "grand",
+  "name": "Grand London tour",
+  "blurb": "Every landmark in one ride: the palace, Westminster, the South Bank, the City, Tower Bridge, Battersea, Chelsea and Knightsbridge.",
+  "loop": true,
+  "via": [
+   [
+    51.50795,
+    -0.1281
+   ],
+   [
+    51.502,
+    -0.1405
+   ],
+   [
+    51.5027,
+    -0.1508
+   ],
+   [
+    51.5015,
+    -0.1775
+   ],
+   [
+    51.4925,
+    -0.1565
+   ],
+   [
+    51.486,
+    -0.15
+   ],
+   [
+    51.4828,
+    -0.1465
+   ],
+   [
+    51.486,
+    -0.124
+   ],
+   [
+    51.501,
+    -0.1185
+   ],
+   [
+    51.5065,
+    -0.115
+   ],
+   [
+    51.5022,
+    -0.0757
+   ],
+   [
+    51.5097,
+    -0.0765
+   ],
+   [
+    51.5138,
+    -0.099
+   ],
+   [
+    51.5105,
+    -0.1185
+   ]
+  ],
+  "names": [
+   "Trafalgar Square",
+   "Buckingham Palace",
+   "Wellington Arch",
+   "the Royal Albert Hall",
+   "Sloane Square",
+   "Chelsea Bridge",
+   "Battersea Power Station",
+   "Vauxhall Bridge",
+   "Westminster Bridge",
+   "the South Bank",
+   "Tower Bridge",
+   "the Tower of London",
+   "St Paul's Cathedral",
+   "the Strand"
+  ]
+ },
+ {
+  "id": "embankment",
+  "name": "Embankment sprint",
+  "blurb": "Flat out along the river: the Victoria Embankment and Millbank from Blackfriars to Chelsea Bridge and back.",
+  "loop": true,
+  "via": [
+   [
+    51.5113,
+    -0.104
+   ],
+   [
+    51.507,
+    -0.122
+   ],
+   [
+    51.495,
+    -0.1255
+   ],
+   [
+    51.486,
+    -0.15
+   ],
+   [
+    51.495,
+    -0.1255
+   ],
+   [
+    51.507,
+    -0.122
+   ]
+  ],
+  "names": [
+   "Blackfriars",
+   "Victoria Embankment",
+   "Millbank",
+   "Chelsea Bridge",
+   "Millbank",
+   "Victoria Embankment"
+  ]
+ },
+ {
+  "id": "regents-laps",
+  "name": "Regent's Park laps",
+  "blurb": "London's favourite training loop: five laps of the Outer Circle round Regent's Park.",
+  "loop": true,
+  "via": [
+   [
+    51.525398,
+    -0.145688
+   ],
+   [
+    51.536687,
+    -0.151529
+   ],
+   [
+    51.531011,
+    -0.165277
+   ],
+   [
+    51.523618,
+    -0.155403
+   ],
+   [
+    51.525398,
+    -0.145688
+   ],
+   [
+    51.536687,
+    -0.151529
+   ],
+   [
+    51.531011,
+    -0.165277
+   ],
+   [
+    51.523618,
+    -0.155403
+   ],
+   [
+    51.525398,
+    -0.145688
+   ],
+   [
+    51.536687,
+    -0.151529
+   ],
+   [
+    51.531011,
+    -0.165277
+   ],
+   [
+    51.523618,
+    -0.155403
+   ],
+   [
+    51.525398,
+    -0.145688
+   ],
+   [
+    51.536687,
+    -0.151529
+   ],
+   [
+    51.531011,
+    -0.165277
+   ],
+   [
+    51.523618,
+    -0.155403
+   ],
+   [
+    51.525398,
+    -0.145688
+   ],
+   [
+    51.536687,
+    -0.151529
+   ],
+   [
+    51.531011,
+    -0.165277
+   ],
+   [
+    51.523618,
+    -0.155403
+   ]
+  ],
+  "names": [
+   "the east side",
+   "the north side by the zoo",
+   "the west side",
+   "the south side",
+   "the east side",
+   "the north side by the zoo",
+   "the west side",
+   "the south side",
+   "the east side",
+   "the north side by the zoo",
+   "the west side",
+   "the south side",
+   "the east side",
+   "the north side by the zoo",
+   "the west side",
+   "the south side",
+   "the east side",
+   "the north side by the zoo",
+   "the west side",
+   "the south side"
+  ]
+ },
+ {
+  "id": "london40",
+  "name": "The London 40",
+  "blurb": "A long tour of the whole box: the parks, Chelsea, Battersea, Vauxhall, the South Bank, Tower Bridge, the City, King's Cross and Regent's Park.",
+  "loop": true,
+  "via": [
+   [
+    51.50795,
+    -0.1281
+   ],
+   [
+    51.502,
+    -0.1405
+   ],
+   [
+    51.5027,
+    -0.1508
+   ],
+   [
+    51.5015,
+    -0.1775
+   ],
+   [
+    51.4925,
+    -0.1565
+   ],
+   [
+    51.4825,
+    -0.181
+   ],
+   [
+    51.479,
+    -0.173
+   ],
+   [
+    51.4828,
+    -0.1465
+   ],
+   [
+    51.486,
+    -0.124
+   ],
+   [
+    51.501,
+    -0.1185
+   ],
+   [
+    51.5022,
+    -0.0757
+   ],
+   [
+    51.5097,
+    -0.0765
+   ],
+   [
+    51.52,
+    -0.094
+   ],
+   [
+    51.5323,
+    -0.1058
+   ],
+   [
+    51.5305,
+    -0.1235
+   ],
+   [
+    51.5335,
+    -0.147
+   ],
+   [
+    51.53,
+    -0.161
+   ],
+   [
+    51.513,
+    -0.1588
+   ],
+   [
+    51.5152,
+    -0.1418
+   ]
+  ],
+  "names": [
+   "Trafalgar Square",
+   "Buckingham Palace",
+   "Wellington Arch",
+   "the Royal Albert Hall",
+   "Sloane Square",
+   "World's End",
+   "Battersea Bridge",
+   "Battersea Power Station",
+   "Vauxhall Bridge",
+   "Westminster Bridge",
+   "Tower Bridge",
+   "the Tower of London",
+   "the Barbican",
+   "the Angel",
+   "King's Cross",
+   "Regent's Park",
+   "Hanover Gate",
+   "Marble Arch",
+   "Oxford Circus"
+  ]
+ },
+ {
+  "id": "london100",
+  "name": "The London 100 (two laps)",
+  "blurb": "Twice round the London 40 and on round the City: a proper long day in the saddle, flat all the way.",
+  "loop": true,
+  "via": [
+   [
+    51.50795,
+    -0.1281
+   ],
+   [
+    51.502,
+    -0.1405
+   ],
+   [
+    51.5027,
+    -0.1508
+   ],
+   [
+    51.5015,
+    -0.1775
+   ],
+   [
+    51.4925,
+    -0.1565
+   ],
+   [
+    51.4825,
+    -0.181
+   ],
+   [
+    51.479,
+    -0.173
+   ],
+   [
+    51.4828,
+    -0.1465
+   ],
+   [
+    51.486,
+    -0.124
+   ],
+   [
+    51.501,
+    -0.1185
+   ],
+   [
+    51.5022,
+    -0.0757
+   ],
+   [
+    51.5097,
+    -0.0765
+   ],
+   [
+    51.52,
+    -0.094
+   ],
+   [
+    51.5323,
+    -0.1058
+   ],
+   [
+    51.5305,
+    -0.1235
+   ],
+   [
+    51.5335,
+    -0.147
+   ],
+   [
+    51.53,
+    -0.161
+   ],
+   [
+    51.513,
+    -0.1588
+   ],
+   [
+    51.5152,
+    -0.1418
+   ],
+   [
+    51.50795,
+    -0.1281
+   ],
+   [
+    51.502,
+    -0.1405
+   ],
+   [
+    51.5027,
+    -0.1508
+   ],
+   [
+    51.5015,
+    -0.1775
+   ],
+   [
+    51.4925,
+    -0.1565
+   ],
+   [
+    51.4825,
+    -0.181
+   ],
+   [
+    51.479,
+    -0.173
+   ],
+   [
+    51.4828,
+    -0.1465
+   ],
+   [
+    51.486,
+    -0.124
+   ],
+   [
+    51.501,
+    -0.1185
+   ],
+   [
+    51.5022,
+    -0.0757
+   ],
+   [
+    51.5097,
+    -0.0765
+   ],
+   [
+    51.52,
+    -0.094
+   ],
+   [
+    51.5323,
+    -0.1058
+   ],
+   [
+    51.5305,
+    -0.1235
+   ],
+   [
+    51.5335,
+    -0.147
+   ],
+   [
+    51.53,
+    -0.161
+   ],
+   [
+    51.513,
+    -0.1588
+   ],
+   [
+    51.5152,
+    -0.1418
+   ],
+   [
+    51.5133,
+    -0.089
+   ],
+   [
+    51.5144,
+    -0.0803
+   ],
+   [
+    51.5101,
+    -0.086
+   ],
+   [
+    51.5138,
+    -0.099
+   ]
+  ],
+  "names": [
+   "Trafalgar Square",
+   "Buckingham Palace",
+   "Wellington Arch",
+   "the Royal Albert Hall",
+   "Sloane Square",
+   "World's End",
+   "Battersea Bridge",
+   "Battersea Power Station",
+   "Vauxhall Bridge",
+   "Westminster Bridge",
+   "Tower Bridge",
+   "the Tower of London",
+   "the Barbican",
+   "the Angel",
+   "King's Cross",
+   "Regent's Park",
+   "Hanover Gate",
+   "Marble Arch",
+   "Oxford Circus",
+   "Trafalgar Square",
+   "Buckingham Palace",
+   "Wellington Arch",
+   "the Royal Albert Hall",
+   "Sloane Square",
+   "World's End",
+   "Battersea Bridge",
+   "Battersea Power Station",
+   "Vauxhall Bridge",
+   "Westminster Bridge",
+   "Tower Bridge",
+   "the Tower of London",
+   "the Barbican",
+   "the Angel",
+   "King's Cross",
+   "Regent's Park",
+   "Hanover Gate",
+   "Marble Arch",
+   "Oxford Circus",
+   "Bank",
+   "the Gherkin",
+   "the Monument",
+   "St Paul's Cathedral"
+  ]
+ }
+]

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- RideWorld: an orange road winding up to a summit under a low sun, on the app's dark background -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2633"/>
+      <stop offset="1" stop-color="#07090c"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c3a4c"/>
+      <stop offset="1" stop-color="#121820"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ff6a1a"/>
+      <stop offset="1" stop-color="#ffb347"/>
+    </linearGradient>
+    <clipPath id="tile"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <circle cx="372" cy="150" r="58" fill="#ff8a3d" opacity=".9"/>
+    <circle cx="372" cy="150" r="88" fill="#ff8a3d" opacity=".12"/>
+    <path d="M-20 420 L150 190 L232 270 L300 150 L540 470 L540 560 L-20 560 Z" fill="url(#hill)"/>
+    <path d="M300 150 L270 202 L300 218 L326 186 Z" fill="#e8eef5"/>
+    <path d="M150 190 L128 220 L152 232 L168 214 Z" fill="#d7dee8" opacity=".85"/>
+    <path d="M96 520 C 150 450, 330 450, 300 390 S 170 350, 220 300 S 300 250, 296 196"
+          fill="none" stroke="#07090c" stroke-width="70" stroke-linecap="round" opacity=".55"/>
+    <path d="M96 520 C 150 450, 330 450, 300 390 S 170 350, 220 300 S 300 250, 296 196"
+          fill="none" stroke="url(#road)" stroke-width="48" stroke-linecap="round"/>
+    <path d="M96 520 C 150 450, 330 450, 300 390 S 170 350, 220 300 S 300 250, 296 196"
+          fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="18 22" stroke-linecap="round" opacity=".85"/>
+  </g>
+</svg>

@@ -1,0 +1,5 @@
+{
+ "note": "Per-world build options (tools/openworld/options/<world id>.json). the owner's rule (2026-11-17): a fix for one world must not change another, so behaviours added for London are switched on per world. city: building relations, multipolygon outlines joined into rings (and water relations never woods), river lines inside water areas skipped, big bridges on their DSM decks, survey trees on bridges / water dropped (build.mjs); railway bridge decks and big-water levels (bheights.mjs). A world without this file builds exactly as before. bridgeRuns (2026-11-20): whole bridges on their surveyed decks, pieces joined (build.mjs; check with bridgecheck.mjs).",
+ "city": true,
+ "bridgeRuns": true
+}

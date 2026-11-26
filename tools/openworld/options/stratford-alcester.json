@@ -1,0 +1,16 @@
+{
+ "note": "(2026-11-18): Alcester to Stratford-upon-Avon, Shelfield to Dorsington. city: the newer build behaviours (building relations, joined multipolygons, bridges on their surveyed decks, survey trees off bridges and water, rail decks, levelled big water). See london-central.json. bikeAccess (2026-11-18): roads closed to traffic but open to bikes are included (Bidford's old bridge). bridgeRuns (2026-11-20): whole bridges on their surveyed decks, pieces joined (build.mjs; check with bridgecheck.mjs).",
+ "city": true,
+ "bikeAccess": true,
+ "bridgeRuns": true,
+ "canal": {
+  "box": [
+   52.128,
+   -1.885,
+   52.278,
+   -1.612
+  ],
+  "osm": "data/cache/osm/stratford.opl",
+  "note": "Stratford-upon-Avon Canal: the Wilmcote flight and the Stratford locks (2026-11-21), canal.mjs + tools/kit/canal.py as Tardebigge"
+ }
+}

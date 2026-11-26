@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#04060c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RideWorld">
+  <title>RideWorld · Ride real roads, together</title>
+  <meta name="description" content="Indoor cycling on real roads in photorealistic 3D, with your smart trainer. Ride together, follow workouts, upload to Strava.">
+  <meta property="og:title" content="RideWorld"><meta property="og:description" content="Ride real roads in photorealistic 3D, with your smart trainer.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="landing">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M15 6.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM12 17v-3.5L9 11l4-3 2 3h2.5"/></symbol><symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1M16 3.1a4 4 0 0 1 0 7.8M22 21v-1a5 5 0 0 0-3.5-4.8"/></symbol><symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol><symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol></defs></svg>
+  <div class="backdrop" aria-hidden="true"><i></i><i></i><i></i></div>
+  <main class="land">
+    <section class="land-hero">
+      <div class="land-brand brand"><span class="brand-mark"><svg><use href="#i-bike"/></svg></span><span>Ride<b>World</b></span></div>
+      <h1 class="land-title">Ride real roads.<br><em>Together.</em></h1>
+      <p class="land-lead">Indoor cycling through photorealistic 3D scenery of the real world, with your smart trainer feeling every gradient.</p>
+      <ul class="land-points">
+        <li><span class="tile"><svg class="ic"><use href="#i-globe"/></svg></span><span><b>Real places</b>Llanberis Pass, Alpe d'Huez, your own routes from Strava, Komoot or RideWithGPS</span></li>
+        <li><span class="tile"><svg class="ic"><use href="#i-users"/></svg></span><span><b>Ride together</b>one shared world: draft in the bunch, group rides, chase your ghost</span></li>
+        <li><span class="tile"><svg class="ic"><use href="#i-zap"/></svg></span><span><b>Train properly</b>ERG workouts, segments and leaderboards, every ride straight to Strava</span></li>
+        <li><span class="tile"><svg class="ic"><use href="#i-activity"/></svg></span><span><b>Your kit</b>ANT+ or Bluetooth smart trainers, power meters and heart-rate straps, in Chrome</span></li>
+      </ul>
+    </section>
+
+    <section class="land-card" aria-live="polite">
+      <div class="land-tabs" role="tablist">
+        <button type="button" role="tab" id="tab-interest" aria-selected="true">Register interest</button>
+        <button type="button" role="tab" id="tab-login" aria-selected="false">Sign in</button>
+      </div>
+
+      <form id="interest">
+        <h2>Be first on the road</h2>
+        <p class="land-note">RideWorld opens to everyone soon. Leave your details and you'll hear first.</p>
+        <label>Your name<input name="name" type="text" autocomplete="name" maxlength="80" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" maxlength="120" required></label>
+        <label>Anything to tell us? <span class="opt">optional</span>
+          <textarea name="note" maxlength="500" rows="2" placeholder="Your trainer, roads you'd love to ride…"></textarea></label>
+        <label class="hp" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <button class="primary wide" type="submit">Register my interest</button>
+        <p id="interest-msg" class="land-msg" role="alert"></p>
+        <p class="land-small">We only use your email to tell you about RideWorld. No spam, and you can ask us to remove it any time.</p>
+      </form>
+      <div id="interest-done" class="land-done hidden">
+        <div class="land-tick">✓</div>
+        <h2>You're on the list</h2>
+        <p class="land-note">Thanks! We'll be in touch as soon as RideWorld opens up.</p>
+      </div>
+
+      <form id="login" class="hidden">
+        <h2>Welcome back</h2>
+        <label>Username or email<input id="username" type="text" autocomplete="username" autocapitalize="none" required></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
+        <button class="primary wide" type="submit">Sign in</button>
+        <p id="msg" class="land-msg" role="alert"></p>
+        <p class="land-msg"><a href="#forgot" id="to-forgot" style="color:inherit">Forgotten your password?</a></p>
+      </form>
+      <form id="forgot" class="hidden">
+        <h2>Reset your password</h2>
+        <p class="land-msg" style="color:var(--muted)">Enter your username or email address and we'll email you a link to set a new password.</p>
+        <label>Username or email<input id="forgot-who" type="text" autocomplete="username" autocapitalize="none" required></label>
+        <button class="primary wide" type="submit">Email me a link</button>
+        <p id="forgot-msg" class="land-msg" role="alert"></p>
+        <p class="land-msg"><a href="#login" id="back-login" style="color:inherit">Back to sign in</a></p>
+      </form>
+      <form id="reset" class="hidden">
+        <h2>Choose a new password</h2>
+        <label>New password <span class="opt">(at least 10 characters)</span><input id="reset-pw" type="password" autocomplete="new-password" minlength="10" required></label>
+        <label>New password again<input id="reset-pw2" type="password" autocomplete="new-password" minlength="10" required></label>
+        <button class="primary wide" type="submit">Set password and sign in</button>
+        <p id="reset-msg" class="land-msg" role="alert"></p>
+      </form>
+    </section>
+  </main>
+  <footer class="land-foot"><a href="requirements.html" style="color:inherit">What you need: devices, browsers and trainers</a> · Scenery: Google · Maps: © OpenStreetMap contributors</footer>
+  <script src="js/login.js"></script>
+</body>
+</html>

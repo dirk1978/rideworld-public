@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060c">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+<title>Route Studio · RideWorld</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Route Studio (2026-11-14): shape a route's road on the satellite map, like laying coaster track */
+:root { --bg:#04060c; --panel:rgba(14,18,30,.86); --stroke:rgba(255,255,255,.13); --fg:#f5f7fc; --muted:#a6b0c6; --accent:#ff6a1a;
+  --grad:linear-gradient(120deg,#ff8a1e 0%,#ff5a3c 45%,#ff2e7e 100%); --num:"Barlow Semi Condensed",Inter,system-ui,sans-serif; color-scheme:dark; }
+* { box-sizing:border-box; }
+html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font:14px/1.4 Inter, system-ui, sans-serif; overflow:hidden; }
+#map { position:absolute; inset:0; background:#0a0e19; }
+.panel { position:absolute; z-index:500; background:var(--panel); border:1px solid var(--stroke); border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.45); backdrop-filter:blur(10px); }
+#top { left:12px; right:12px; top:12px; display:flex; align-items:center; gap:12px; padding:8px 12px; flex-wrap:wrap; }
+#top h1 { margin:0; font-family:var(--num); font-style:italic; font-weight:800; font-size:22px; text-transform:uppercase; white-space:nowrap; }
+#top h1 b { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+#rname { font-weight:600; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1 1 120px; }
+#saved { font-size:12px; color:var(--muted); white-space:nowrap; }
+button, a.btn { font:inherit; color:var(--fg); background:rgba(255,255,255,.07); border:1px solid var(--stroke); border-radius:10px; padding:7px 12px; cursor:pointer; text-decoration:none; white-space:nowrap; -webkit-user-select:none; user-select:none; }
+button:hover, a.btn:hover { background:rgba(255,255,255,.14); }
+button:disabled { opacity:.4; cursor:default; }
+button.go { background:var(--grad); border-color:transparent; font-weight:700; }
+#tools { left:12px; top:76px; width:214px; padding:10px; display:flex; flex-direction:column; gap:7px; }
+#tools h2, #side h2 { margin:2px 2px 4px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
+.tool { display:flex; align-items:center; gap:10px; padding:9px 10px; text-align:left; border-radius:12px; }
+.tool .ico { width:30px; height:30px; display:grid; place-items:center; border-radius:9px; background:rgba(255,255,255,.08); font-size:17px; flex:none; }
+.tool .k { margin-left:auto; font-size:11px; color:var(--muted); border:1px solid var(--stroke); border-radius:5px; padding:0 5px; }
+.tool.on { border-color:#ff8a3c; background:rgba(255,138,60,.18); }
+.tool.on .ico { background:var(--grad); }
+.slider { font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:3px; padding:2px 4px; }
+.slider input { width:100%; accent-color:#ff6a1a; }
+#hint { font-size:12px; color:var(--muted); padding:4px; min-height:3.4em; }
+#side { right:12px; top:76px; width:260px; max-height:calc(100% - 250px); padding:10px; display:flex; flex-direction:column; }
+#list { overflow-y:auto; display:flex; flex-direction:column; gap:4px; font-size:12.5px; }
+.corr { display:flex; align-items:center; gap:6px; padding:5px 7px; border-radius:9px; background:rgba(255,255,255,.04); cursor:pointer; }
+.corr:hover { background:rgba(255,255,255,.1); }
+.corr .t { flex:1; }
+.corr .x { padding:1px 7px; border-radius:7px; }
+.corr.mine { border-left:3px solid #ff8a3c; }
+#legend { font-size:11.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 10px; margin-top:8px; }
+#legend i { display:inline-block; width:18px; height:5px; border-radius:3px; vertical-align:middle; margin-right:4px; }
+#strip { left:238px; right:284px; bottom:12px; height:118px; padding:8px 10px 6px; }
+#strip canvas { width:100%; height:86px; display:block; cursor:crosshair; }
+#strip .lbl { font-size:11px; color:var(--muted); display:flex; justify-content:space-between; }
+.wig { width:22px; height:22px; border-radius:50%; background:#ff2e7e; color:#fff; font-weight:800; font-size:13px; display:grid; place-items:center; box-shadow:0 0 0 3px rgba(255,46,126,.35), 0 2px 6px rgba(0,0,0,.5); }
+.handle { width:16px; height:16px; border-radius:50%; background:#22d3ee; border:3px solid #fff; box-shadow:0 1px 6px rgba(0,0,0,.6); }
+#toast { position:absolute; z-index:900; left:50%; bottom:150px; transform:translateX(-50%); background:rgba(10,14,25,.92); border:1px solid var(--stroke); border-radius:12px; padding:9px 14px; font-weight:600; opacity:0; transition:opacity .25s; pointer-events:none; }
+#toast.on { opacity:1; }
+body.dragging, body.dragging * { cursor:grabbing !important; }
+@media (max-width: 900px) { #side { display:none; } #strip { left:12px; right:12px; } #tools { width:180px; } }
+</style>
+</head><body>
+<div id="map"></div>
+<div id="top" class="panel">
+  <h1><b>Route</b>&nbsp;Studio</h1>
+  <span id="rname">Loading…</span>
+  <span id="saved"></span>
+  <button id="undo" title="Undo (Z)" disabled>↶ Undo</button>
+  <button id="redo" title="Redo (Y)" disabled>↷ Redo</button>
+  <button id="ride" class="go" title="Open the ride here in the simulator (a new tab)">▶ Ride it</button>
+  <a class="btn" href="/" title="Back to RideWorld">✕</a>
+</div>
+<div id="tools" class="panel">
+  <h2>Tools</h2>
+  <button class="tool on" data-tool="select"><span class="ico">⇥</span>Select stretch<span class="k">1</span></button>
+  <button class="tool" data-tool="drag"><span class="ico">✋</span>Drag the track<span class="k">2</span></button>
+  <button class="tool" id="t-bend"><span class="ico">⤳</span>Smooth bend<span class="k">B</span></button>
+  <button class="tool" id="t-straight"><span class="ico">━</span>Straighten<span class="k">T</span></button>
+  <label class="slider">Bend tension <span id="tension-v">1.0</span><input id="tension" type="range" min="0.4" max="1.5" step="0.05" value="1"></label>
+  <label class="slider">Drag reach <span id="reach-v">60 m</span><input id="reach" type="range" min="15" max="250" step="5" value="60"></label>
+  <div id="hint"></div>
+  <div id="legend"><span><i style="background:#e8edf5"></i>straight</span><span><i style="background:#34d399"></i>gentle</span><span><i style="background:#fbbf24"></i>bend</span><span><i style="background:#ff4d4d"></i>tight</span><span><span class="wig" style="display:inline-grid;width:14px;height:14px;font-size:9px;box-shadow:none">!</span> wiggle?</span></div>
+</div>
+<div id="side" class="panel">
+  <h2>Corrections on this route</h2>
+  <div id="list"></div>
+</div>
+<div id="strip" class="panel">
+  <div class="lbl"><span>Lean along the route (up = right, down = left) · click to jump</span><span id="strip-km"></span></div>
+  <canvas id="lean"></canvas>
+</div>
+<div id="toast"></div>
+<script type="module" src="/js/studio.js"></script>
+</body></html>

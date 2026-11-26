@@ -1,0 +1,39 @@
+{
+ "note": "Clopton Bridge from the recreation ground bank: the Avon, the fourteen arches, the rider on the bank; box -1.7092,52.1876,-1.6914,52.1966",
+ "box": [
+  -1.7092,
+  52.1876,
+  -1.6914,
+  52.1966
+ ],
+ "cam": [
+  -40,
+  -160,
+  1.8
+ ],
+ "at": [
+  -8,
+  -58,
+  0
+ ],
+ "atZ": 35.5,
+ "lens": 50,
+ "rider": {
+  "xy": [
+   -36.5,
+   -151.5
+  ],
+  "heading": 248,
+  "frame": 8
+ },
+ "sun": {
+  "elev": 36,
+  "az": 235
+ },
+ "focus": 9.5,
+ "fstop": 4,
+ "size": [
+  1600,
+  1152
+ ]
+}

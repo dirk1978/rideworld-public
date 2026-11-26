@@ -1,0 +1,51 @@
+{
+ "note": "London corrections (tools/openworld/edits/london-central.json). 2026-11-22: Tower Bridge's approaches: each end's little island loop (two one-way pieces) is made one straight two-way road",
+ "remove": [
+  {
+   "at": [
+    51.507152,
+    -0.0742596
+   ],
+   "note": "Tower Bridge Approach"
+  },
+  {
+   "at": [
+    51.5037822,
+    -0.0765817
+   ],
+   "note": "Tower Bridge Road"
+  }
+ ],
+ "oneway": [
+  {
+   "at": [
+    51.5070787,
+    -0.0743736
+   ],
+   "mode": "two"
+  },
+  {
+   "at": [
+    51.5037586,
+    -0.0764922
+   ],
+   "mode": "two"
+  }
+ ],
+ "straight": [
+  {
+   "at": [
+    51.5070787,
+    -0.0743736
+   ],
+   "note": "Tower Bridge Approach"
+  },
+  {
+   "at": [
+    51.5037586,
+    -0.0764922
+   ],
+   "note": "Tower Bridge Road"
+  }
+ ]
+}

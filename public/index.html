@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#04060c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RideWorld">
+  <script src="js/android-bridge.js"></script><!-- (the Android app only: Bluetooth + downloads; nothing in a browser) -->
+  <script src="js/errlog.js"></script>
+  <title>RideWorld</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.146.0/Build/Cesium/Widgets/widgets.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script>window.CESIUM_BASE_URL = 'https://cdn.jsdelivr.net/npm/cesium@1.146.0/Build/Cesium/';</script>
+  <script src="https://cdn.jsdelivr.net/npm/cesium@1.146.0/Build/Cesium/Cesium.js"></script>
+</head>
+<body>
+  <!-- icons (line icons in the Lucide style, drawn for RideWorld) and the gradients the dials and route thumbnails use -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+    <radialGradient id="g-face" cx="50%" cy="38%" r="65%"><stop offset="0" stop-color="#26304a" stop-opacity=".62"/><stop offset=".7" stop-color="#121828" stop-opacity=".5"/><stop offset="1" stop-color="#07090f" stop-opacity=".55"/></radialGradient>
+    <linearGradient id="g-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+    <linearGradient id="g-prof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6a1a" stop-opacity=".55"/><stop offset="1" stop-color="#ff2e7e" stop-opacity=".05"/></linearGradient>
+    <filter id="g-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></symbol><symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol><symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol><symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M10 2h4"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1M16 3.1a4 4 0 0 1 0 7.8M22 21v-1a5 5 0 0 0-3.5-4.8"/></symbol><symbol id="i-history" viewBox="0 0 24 24"><path d="M3 3v5h5"/><path d="M3.1 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l3.5 2"/></symbol><symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol><symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5z"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4M4 4h14l-3 4.5L18 13H4"/></symbol><symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10.5 6-4v11l-6-4"/></symbol><symbol id="i-road" viewBox="0 0 24 24"><path d="M5 21 9.5 3M19 21 14.5 3M12 4v3M12 10.5v3M12 17v3"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M22 18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3l2-3h6l2 3h3a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol><symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol><symbol id="i-mute" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></symbol><symbol id="i-hat" viewBox="0 0 24 24"><path d="M2 18.5c3 1.5 17 1.5 20 0"/><path d="M5.5 18c0-5 1.5-10 6.5-10s6.5 5 6.5 10"/><path d="M6 14.5c3 1 9 1 12 0"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></symbol><symbol id="i-more" viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3.2"/></symbol><symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol><symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M15 6.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM12 17v-3.5L9 11l4-3 2 3h2.5"/></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></symbol><symbol id="i-radio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.5M7.8 16.2a6 6 0 0 1 0-8.5M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/></symbol><symbol id="i-bluetooth" viewBox="0 0 24 24"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></symbol><symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></symbol><symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.5"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></symbol><symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol><symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol><symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-7"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol><symbol id="i-crank" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="m13.5 10.5 4-4M16 5h3v3"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+  </defs></svg>
+  <div id="globe"></div>
+
+  <!-- Ride HUD -->
+  <div id="hud" class="hidden">
+    <div class="metric"><span id="m-grade">0.0</span><small>%</small><label id="m-grade-label">Gradient</label></div>
+    <div class="metric"><span id="m-dist">0.00</span><small id="m-dist-unit">km</small><label id="m-dist-label">Distance</label></div>
+    <div class="metric"><span id="m-time">0:00</span><label>Time</label></div>
+    <div class="metric" title="Time to the finish at your recent power, with the climbs and descents ahead"><span id="m-eta">–</span><label id="m-eta-label">To the finish</label></div>
+    <div class="metric" id="gear-box" hidden title="Virtual gears: [ easier, ] harder"><span id="gear-n">12</span><small>/24</small><label><button id="gear-dn" type="button" class="gear-b" title="Easier gear ([)">−</button>Gear<button id="gear-up" type="button" class="gear-b" title="Harder gear (])">+</button></label></div>
+    <div class="metric" title="Height gained (and lost) on this ride"><span id="m-climb">0</span><small id="m-climb-unit">m</small><label id="m-climb-label">↓ 0 m</label></div>
+  </div>
+
+  <!-- round dials in the corners -->
+  <div id="g-power" class="dial tl hidden"></div>
+  <div id="draft" title="Riding in someone's slipstream: less air resistance (and an easier trainer)"><span class="lbl">💨 Draft</span> <b id="draft-pct">0%</b> <span id="draft-w"></span></div>
+  <div id="minimap" class="dial map hidden" title="Whole route (north up): click to follow you. You are the dot with the white ring."></div>
+  <div id="minimap2" class="dial map close hidden" title="About 1.5 km across, following you: click for 500 m"></div>
+  <div id="g-hr" class="dial tr hidden"></div>
+  <div id="g-cad" class="dial bl hidden"></div>
+  <div id="g-speed" class="dial br hidden"></div>
+
+  <div id="mp-panel" class="hidden"></div>
+  <div id="rc-tip" class="hidden" role="dialog" aria-label="Phone remote">
+    <div class="rc-qr" id="rc-qr-tip" aria-hidden="true"></div>
+    <div class="rc-tip-text"><span class="rc-tip-k"><svg class="ic"><use href="#i-phone"/></svg> Phone remote</span><b>Control this ride from your phone</b><span>Scan the code with its camera: pause, cameras, photos and workouts from the bars.</span>
+      <span class="rc-tip-btns"><button class="small primary" id="rc-tip-ok">Got it</button><button class="small" id="rc-tip-never">Don't show again</button></span></div>
+  </div>
+  <div id="music" class="hidden">
+    <div id="yt-holder"><div id="yt-player"></div></div>
+    <div id="m-title" class="m-title">Loading music…</div>
+    <div class="m-ctl">
+      <button id="m-prev" title="Previous">⏮</button><button id="m-play" title="Play / pause (M)">⏯</button><button id="m-next" title="Next (N)">⏭</button>
+      <button id="m-shuffle" title="Shuffle">🔀</button>
+      <input id="m-vol" type="range" min="0" max="100" value="60" title="Music volume">
+    </div>
+  </div>
+  <div id="mp-lobby" class="panel hidden"><p id="mp-lobby-text"></p><button id="mp-start" class="primary hidden">Start the ride for everyone</button></div>
+
+  <div id="profile-wrap" class="hidden"><canvas id="profile"></canvas></div>
+
+  <div id="controls" class="hidden">
+    <div class="dock-group" aria-label="Ride">
+      <button id="btn-ride" class="primary">Start ride</button>
+      <button id="btn-finish" class="hidden" title="End the ride now: summary, save and Strava"><svg class="ic"><use href="#i-flag"/></svg> Finish</button>
+      <button id="btn-uturn" class="hidden" title="Open world: turn round and ride back the way you came (U)">↩ Turn round</button>
+      <button id="btn-nav" class="hidden" title="Open world satnav: find a place and the junctions take you there (/)">🧭 Go to…</button>
+    </div>
+    <div class="dock-group" aria-label="View">
+      <button id="btn-cam" title="Camera (C)"><svg class="ic"><use href="#i-video"/></svg> <span id="cam-name">Chase</span></button>
+      <button id="btn-clean" class="icon" title="Clean road on/off (K)"><svg class="ic"><use href="#i-road"/></svg></button>
+      <button id="btn-shot" class="icon" title="Screenshot (P)"><svg class="ic"><use href="#i-camera"/></svg></button>
+    </div>
+    <div class="dock-group" aria-label="Extras">
+      <button id="btn-sound" class="icon" title="Ride sounds on/off"><svg class="ic"><use href="#i-volume"/></svg></button>
+      <button id="btn-chapeau" class="icon hidden" title="Chapeau! (H): doff your cap to the nearest rider. Or click a name in the rider list"><svg class="ic"><use href="#i-hat"/></svg></button>
+      <button id="btn-edit" class="icon hidden" title="Route editor (E): nudge the line and the rider's height"><svg class="ic"><use href="#i-pencil"/></svg></button>
+    </div>
+    <div class="dock-fill"></div>
+    <div class="dock-group status" aria-label="Sensors">
+      <span id="status-ant" class="pill off">Sensors off</span>
+      <span id="status-hr" class="pill off">HR</span>
+      <span id="status-fec" class="pill off">Power</span>
+      <span id="perf" class="pill" title="Frame rate and render resolution (adjusts itself)">– fps</span>
+    </div>
+    <div class="dock-group" aria-label="More">
+      <button id="btn-more" class="icon" title="Files, ride log, keyboard shortcuts" aria-haspopup="true"><svg class="ic"><use href="#i-more"/></svg></button>
+      <button id="btn-menu" title="Settings: pauses the ride; Resume carries on where you were"><svg class="ic"><use href="#i-gear"/></svg> Settings</button>
+    </div>
+    <div id="dock-menu" class="dock-menu hidden" role="menu">
+      <p class="dock-menu-h">Ride files</p>
+      <div class="dock-menu-row">
+        <button id="btn-save-fit" disabled title="FIT file of the ride so far">.fit</button>
+        <button id="btn-save" disabled title="TCX file, for other apps">.tcx</button>
+        <button id="btn-save-gpx" disabled title="GPX file, with heart rate, cadence and power">.gpx</button>
+        <button id="btn-log" title="Ride log (.csv): every second, what the trainer reported and what RideWorld sent it (slope, ERG target, draft). Handy if the trainer feels wrong">Ride log</button>
+      </div>
+      <p class="dock-menu-h">Something wrong?</p>
+      <div class="dock-menu-row"><button id="btn-report" title="Send a screenshot of this spot, where it is and how you're riding, with a note (R)"><svg class="ic"><use href="#i-flag"/></svg> Report a problem here</button></div>
+      <p class="dock-menu-h">Filming</p>
+      <div class="dock-menu-row"><button id="btn-film" title="Hide every overlay for a clean screen recording (F, or Esc to come back)"><svg class="ic"><use href="#i-film"/></svg> Film mode</button></div>
+      <p class="dock-keys" style="margin-bottom:12px">Cameras for video: <b>Orbit</b>, <b>Sweep</b>, <b>Fly-by</b> (C to cycle)</p>
+      <p class="dock-menu-h">Keys</p>
+      <p class="dock-keys"><b>C</b> camera (stops the slideshow; after the last view it starts again) · <b>F</b> film mode · <b>K</b> clean road · <b>P</b> photo · <b>R</b> report a problem · <b>H</b> chapeau · <b>E</b> edit route · <b>M</b> music · <b>N</b> next song · <b>− / =</b> workout easier / harder<span id="sim-hint" class="hidden"> · <b>W / S</b> (or <b>↑ / ↓</b>) simulator watts · <b>J</b> jump</span> · open world: <b>↑ ← →</b> choose the way at a junction, <b>U</b> turn round</p>
+    </div>
+  </div>
+
+  <!-- Setup -->
+  <!-- phones and tablets (touchmenu.js): three big buttons, and ☰ opens a sheet of big buttons -->
+  <div id="tm-dock" class="touch-ui">
+    <button id="tm-down" class="tm-sim hidden" title="Simulator: less power (hold to keep going)">−</button>
+    <button id="tm-ride" class="primary">Start ride</button>
+    <button id="tm-up" class="tm-sim hidden" title="Simulator: more power (hold to keep going)">+</button>
+    <button id="tm-cam-btn" title="Next camera view"><svg class="ic"><use href="#i-video"/></svg></button>
+    <button id="tm-open" title="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+  </div>
+  <div id="tm-sheet" class="hidden"><div class="tm-panel"><div id="tm-grid"></div><button id="tm-close">Close</button></div></div>
+  <button id="tm-film-exit" title="Back from film mode">✕</button>
+  <div id="setup">
+    <div class="backdrop" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="shell">
+    <aside class="side glass">
+      <a class="brand" href="#sec-rider"><span class="brand-mark"><svg><use href="#i-bike"/></svg></span><span class="brand-word">Ride<b>World</b></span></a>
+      <nav class="side-nav" aria-label="Setup sections">
+        <a href="#sec-rider"><svg class="ic"><use href="#i-user"/></svg>Rider &amp; kit</a>
+        <a href="#sec-coach" class="coach-only"><svg class="ic"><use href="#i-trend"/></svg>Coach</a>
+        <a href="#sec-screen"><svg class="ic"><use href="#i-sliders"/></svg>On screen</a>
+        <a href="#sec-sensors"><svg class="ic"><use href="#i-activity"/></svg>Sensors</a>
+        <a href="#sec-route" class="pre-ride"><svg class="ic"><use href="#i-map"/></svg>Route</a>
+        <a href="#sec-workout" class="pre-ride"><svg class="ic"><use href="#i-zap"/></svg>Workout</a>
+        <a href="#sec-music"><svg class="ic"><use href="#i-music"/></svg>Sound &amp; music</a>
+        <a href="#sec-pacers" class="pre-ride"><svg class="ic"><use href="#i-timer"/></svg>Pacers &amp; ghosts</a>
+        <a href="#sec-group" class="pre-ride"><svg class="ic"><use href="#i-users"/></svg>Ride with others</a>
+        <a href="#sec-rides"><svg class="ic"><use href="#i-history"/></svg>My rides</a>
+        <a href="#sec-strava"><svg class="ic"><use href="#i-upload"/></svg>Strava</a>
+      </nav>
+      <div class="side-foot">
+        <button type="button" class="side-goal" id="side-goal" title="Your weekly goal, streak and milestones"></button>
+        <input id="cfg-goal" type="hidden" value="">
+        <button type="button" class="side-rc" id="btn-rc-help" title="Use your phone as a remote control for the ride"><span class="rc-qr" id="rc-qr-side" aria-hidden="true"></span><span class="sr-info"><span class="sr-k"><svg class="ic"><use href="#i-phone"/></svg> Phone remote</span><b id="rc-side-title">Your phone as a remote</b><span id="rc-side-sub">Scan to pause, switch cameras, take photos…</span></span></button>
+        <a class="side-route" id="side-route" href="#sec-route"><span class="sr-thumb"></span><span class="sr-info"><span class="sr-k">Your route</span><b id="side-route-name">Choose a route</b><span id="side-route-meta"></span></span></a>
+        <div class="go-row">
+          <button id="btn-go" class="primary" disabled>Go ride</button>
+          <button id="btn-go-sim" disabled title="Ride without a trainer: W / S (or ↑ / ↓) set your power">Simulator</button>
+        </div>
+      </div>
+    </aside>
+    <div class="panel">
+      <div class="titlebar">
+        <h1>Ready to <em>ride</em></h1>
+        <div class="userbar">
+          <span id="me"></span>
+          <button id="btn-advanced" class="small" title="Clean road, road colour and width, trainer difficulty"><svg class="ic"><use href="#i-sliders"/></svg>Advanced</button>
+          <button id="btn-keys" class="small hidden" title="Scenery keys and the Strava app (admins)"><svg class="ic"><use href="#i-key"/></svg>Keys</button>
+          <button id="btn-accounts" class="small hidden"><svg class="ic"><use href="#i-users"/></svg>Accounts</button>
+          <a id="btn-status" class="small button hidden" href="/status" target="_blank" rel="noopener" title="Who's on, where they are, stats and server health (admins)"><svg class="ic"><use href="#i-chart"/></svg>Status</a>
+          <button id="btn-password" class="small"><svg class="ic"><use href="#i-lock"/></svg>Password</button>
+          <button id="btn-logout" class="small"><svg class="ic"><use href="#i-logout"/></svg>Sign out</button>
+        </div>
+      </div>
+      <p class="sub">Ride real roads through real-world 3D scenery.</p>
+      <!-- three ways to ride, each with its own colour (the owner 2026-11-18): open world yellow, routes blue, photoreal red -->
+      <div id="mode-pick" class="mode-pick pre-ride" role="tablist" aria-label="How do you want to ride?">
+        <button type="button" class="mode-tile" data-mode="open" role="tab"><span class="mt-ic">🗺</span><span class="mt-txt"><b>Open world</b><small>Ride anywhere on the map, choose your turns, satnav</small></span></button>
+        <button type="button" class="mode-tile" data-mode="routes" role="tab"><span class="mt-ic">〰</span><span class="mt-txt"><b>Routes</b><small>Classic rides from start to finish in RideWorld's drawn scenery</small></span></button>
+        <button type="button" class="mode-tile" data-mode="photo" role="tab"><span class="mt-ic">📷</span><span class="mt-txt"><b>Photoreal</b><small>Real mountain roads in Google's photo-real 3D</small></span></button>
+      </div>
+      <div id="midride-bar" class="midride-bar hidden">
+        <span><svg class="ic"><use href="#i-pause"/></svg> Ride paused <small id="midride-stats" class="midride-stats"></small><small class="midride-hint">Change any settings below, then carry on (Esc), or finish to save and upload.</small></span>
+        <button id="btn-resume" class="primary"><svg class="ic"><use href="#i-play"/></svg> Resume ride</button>
+        <button id="btn-endride" title="Finish the ride here: summary, save, Strava"><svg class="ic"><use href="#i-flag"/></svg> Finish &amp; save</button>
+      </div>
+
+      <div id="secure-warn" class="warn hidden"></div>
+
+
+      <section id="sec-rider">
+        <h2><span class="tile"><svg class="ic"><use href="#i-user"/></svg></span><span>Rider &amp; kit<small>Your weight and power for real speeds; your colours on the road</small></span></h2>
+        <div class="row">
+          <label>Units
+            <select id="cfg-units">
+              <option value="metric" selected>Metric (km, km/h, kg)</option>
+              <option value="imperial">Imperial (miles, mph, lb)</option>
+            </select></label>
+          <label>Your weight (<span class="u-weight">kg</span>)<input id="cfg-rider" type="number" min="30" max="450" step="0.5" value="75"></label>
+          <label>Bike weight (<span class="u-weight">kg</span>)<input id="cfg-bike" type="number" min="5" max="70" step="0.5" value="9"></label>
+        </div>
+        <div class="row">
+          <label>FTP (watts) <span class="opt">colours the power dial</span><input id="cfg-ftp" type="number" min="50" max="600" step="5" value="250"></label>
+          <label>Max heart rate <span class="opt">colours the HR dial</span><input id="cfg-maxhr" type="number" min="120" max="230" step="1" value="185"></label>
+        </div>
+        <div class="row">
+          <label>Virtual coach <span class="opt">fitness, form, suggestions, tips while you ride</span><select id="cfg-coach"><option value="on">On</option><option value="off">Off</option></select></label>
+          <label class="coach-only">When your rides show a higher FTP <span class="opt">the coach watches your best 20 minutes</span><select id="cfg-coachftp"><option value="auto">Update it for me</option><option value="ask">Ask me first</option></select></label>
+        </div>
+        <input id="cfg-cda" type="hidden" value="0.32">
+        <h3>Jersey</h3>
+        <div class="kit-wrap">
+          <div class="kit-preview"><canvas id="kit-front" width="240" height="240"></canvas><canvas id="kit-back" width="240" height="240"></canvas>
+            <span id="kit-name" class="kit-name"></span></div>
+          <div class="kit-designs" id="kit-designs" role="listbox" aria-label="Jersey designs"></div>
+        </div>
+        <input id="kit-design" type="hidden" value="plain:#ff6a1a,#1b1f27">
+        <div class="row kit">
+          <label>Main colour<input id="kit-jersey" type="color" value="#ff6a1a"></label>
+          <label id="kit-c2-l">2nd colour<input id="kit-c2" type="color" value="#1b1f27"></label>
+          <label id="kit-c3-l">3rd colour<input id="kit-c3" type="color" value="#ffffff"></label>
+          <label id="kit-c4-l">4th colour<input id="kit-c4" type="color" value="#111111"></label>
+        </div>
+        <div class="kit-pic" id="kit-pic">
+          <img id="kit-pic-img" alt="" class="hidden">
+          <div class="kit-pic-text"><b id="kit-pic-title">Your own picture</b><span id="kit-pic-note">A logo on the chest and back, or a whole jersey you've painted on the template.</span></div>
+          <div class="kit-pic-btns">
+            <button type="button" class="small" id="kit-up-logo">Add a logo</button>
+            <button type="button" class="small" id="kit-up-full">Upload a whole jersey</button>
+            <button type="button" class="small hidden" id="kit-up-clear">Remove</button>
+            <a href="#" id="kit-template">Download the jersey template</a>
+          </div>
+          <input type="file" id="kit-file" accept="image/png,image/jpeg,image/webp" hidden>
+        </div>
+        <h3>Kit</h3>
+        <div class="row kit">
+          <label>Shorts<input id="kit-shorts" type="color" value="#1b1f27"></label>
+          <label>Socks<input id="kit-socks" type="color" value="#ffffff"></label>
+          <label>Shoes<input id="kit-shoes" type="color" value="#ffffff"></label>
+          <label>Helmet<input id="kit-helmet" type="color" value="#ffffff"></label>
+        </div>
+        <h3>Rider</h3>
+        <div class="kit-preview-wrap"><model-viewer id="kit-preview" autoplay animation-name="pedal" camera-controls disable-pan interaction-prompt="none" camera-target="0.3m 1.32m 0m" camera-orbit="72deg 82deg 1.1m" min-camera-orbit="auto auto 0.5m" max-camera-orbit="auto auto 6m" field-of-view="28deg" exposure="1.05" shadow-intensity="0.6" environment-image="neutral" alt="Your rider" title="Drag to turn, scroll to zoom"></model-viewer></div>
+        <div class="row kit">
+          <label>Skin<select id="kit-skin"><option value="light">Light</option><option value="fair">Fair</option><option value="tan">Tan</option><option value="olive">Olive</option><option value="brown">Brown</option><option value="dark">Dark</option><option value="deep">Deep</option></select></label>
+          <label>Facial hair<select id="kit-beard"><option value="">None</option><option value="stubble">Stubble</option><option value="moustache">Moustache</option><option value="goatee">Goatee</option><option value="short">Short beard</option><option value="full">Full beard</option></select></label>
+          <label>Hair colour<select id="kit-beardcol"><option value="brown">Brown</option><option value="dark">Dark brown</option><option value="black">Black</option><option value="ginger">Ginger</option><option value="blond">Blond</option><option value="grey">Grey</option><option value="white">White</option></select></label>
+        </div>
+        <h3>Bike</h3>
+        <div class="row kit-bike">
+          <img id="kit-bikepic" src="img/bikes/road.webp" alt="" width="240" height="150">
+          <label>Style <span class="opt">looks only: every bike rides the same</span><select id="kit-bikestyle">
+            <option value="road">Modern road (carbon)</option><option value="classic">Classic steel (80s)</option>
+            <option value="compact">Aluminium compact (90s)</option><option value="gravel">Gravel (Giant Revolt Advanced)</option><option value="mtb">Mountain bike (29er hardtail)</option></select></label>
+          <label class="kit-frame-l">Frame colour<input id="kit-frame" type="color" value="#e8e8e8"></label>
+        </div>
+      </section>
+
+      <section id="sec-coach" class="coach-only">
+        <h2><span class="tile"><svg class="ic"><use href="#i-trend"/></svg></span><span>Coach<small>Your fitness, form and what to ride next, from your RideWorld rides</small></span></h2>
+        <div id="coach-ride" class="coach-ride hidden"></div>
+        <div id="coach-tiles" class="coach-tiles"><p class="note">Loading your rides…</p></div>
+        <div class="coach-grid">
+          <div class="coach-card wide" id="cc-plan"></div>
+          <div class="coach-card wide" id="cc-suggest"></div>
+          <div class="coach-card wide hidden" id="cc-ramp"></div>
+          <div class="coach-card wide"><h3>Fitness and fatigue <small>training load, last 90 days</small></h3><div id="ch-fit" class="chart"></div></div>
+          <div class="coach-card wide"><h3>Form <small>fitness minus fatigue: above 0 fresh, below building</small></h3><div id="ch-form" class="chart"></div></div>
+          <div class="coach-card wide"><h3>Power curve <small>your best average power for each length of effort</small></h3><div id="ch-curve" class="chart"></div></div>
+          <div class="coach-card"><h3>Power profile <small>watts per kilo against Coggan's table</small></h3><div id="cc-profile"></div></div>
+          <div class="coach-card"><h3>Time in zones <small>last 28 days</small></h3><div id="cc-zones"></div></div>
+          <div class="coach-card wide"><h3>Weekly load <small>TSS per week</small></h3><div id="ch-weeks" class="chart"></div></div>
+          <div class="coach-card wide"><h3>Recent rides</h3><div id="cc-rides"></div></div>
+        </div>
+        <div class="row">
+          <label>Sex <span class="opt">for the age and power-profile tables</span><select id="cfg-sex"><option value="">Not set</option><option value="m">Male</option><option value="f">Female</option></select></label>
+          <label>Year born <span class="opt">for fitness age</span><input id="cfg-born" type="number" min="1920" max="2015" step="1" placeholder="e.g. 1978"></label>
+          <label>VO2max from your watch <span class="opt">optional: used instead of the estimate</span><input id="cfg-vo2watch" type="number" min="20" max="95" step="0.5" placeholder="e.g. 45"></label>
+        </div>
+        <input id="cfg-coachskip" type="hidden" value="">
+        <details class="note-more"><summary>How these are worked out</summary>
+          <p class="note"><b>TSS</b> (training stress) = hours × IF² × 100, where <b>IF</b> = Normalized Power ÷ the FTP you rode at (Coggan). Rides without power use heart rate. <b>Fitness</b> and <b>fatigue</b> are your daily TSS averaged over 42 and 7 days (Banister, as TrainingPeaks' chart); <b>form</b> is one minus the other. <b>FTP estimate</b>: 95% of your best 20 minutes, or your best hour. <b>Critical power</b> and <b>W′</b>: fitted to your 3–20 minute bests (Monod &amp; Scherrer); W′ balance in a ride follows Skiba's model. <b>VO2max</b>, from the best source available: your watch's figure if you enter it; else a ramp test's best minute; else your heart rate against power (steady minutes from your rides, the line carried on to your max heart rate, as watches do it); both through Hawley &amp; Noakes' equation. Only failing those, the ACSM equation at your best 5 minutes, which reads low unless they were all-out. Your <b>max heart rate</b> matters a lot here: set it under Rider if you know it (else the coach uses the higher of what your rides reached and 208 − 0.7 × age). <b>Power at a heart rate</b>: from the same line, now against the 4 weeks before. <b>Heart-rate recovery</b>: beats lost in the minute after a hard effort. <b>Fitness age</b>: the age whose average VO2max matches yours, from the HUNT fitness study (Loe et al. 2013). <b>Decoupling</b>: how far power per heartbeat fell in the second half (Friel; under 5% is a good aerobic base). Only rides on RideWorld count, so fitness starts low until a few weeks are in. Rides with impossible power (simulator tests) are left out by themselves; leave out any other with ×.</p>
+        </details>
+      </section>
+
+      <section id="sec-screen">
+        <h2><span class="tile"><svg class="ic"><use href="#i-sliders"/></svg></span><span>On screen<small>What shows over the ride. Kept for this device, so your phone and your PC can differ</small></span></h2>
+        <div id="screen-toggles" class="screen-toggles"></div>
+      </section>
+
+      <section id="sec-sensors">
+        <h2><span class="tile"><svg class="ic"><use href="#i-activity"/></svg></span><span>Sensors<small>Trainer, power, heart rate and cadence, over ANT+ or Bluetooth</small></span></h2>
+        <!-- ANT+ (one stick: every ANT+ sensor nearby is found by itself) and Bluetooth (Chrome asks for each device: one
+             button, any kind); the list shows what each reading comes from (setup.js renderSensors) -->
+        <div class="sensor-actions">
+          <button id="btn-ant" title="Open the ANT+ USB stick: ANT+ trainers, heart-rate straps and cadence sensors nearby are found by themselves"><svg class="ic"><use href="#i-radio"/></svg><span>ANT+ stick</span></button>
+          <button id="btn-bt-add" title="Chrome lists Bluetooth trainers, power meters, heart-rate straps and cadence sensors: pick one (press again for each device)"><svg class="ic"><use href="#i-bluetooth"/></svg><span>Add a Bluetooth device</span></button>
+          <button id="btn-bt-forget" class="small" title="Disconnect every Bluetooth sensor and have Chrome forget them (they're not reconnected next time); then add them again">Forget Bluetooth devices</button>
+        </div>
+        <div id="sensor-list" class="sensor-list" aria-live="polite"></div>
+        <input id="cfg-sim" type="checkbox" class="hidden" tabindex="-1" aria-hidden="true">
+        <p class="note">No trainer to hand? <b>Simulator</b> beside Go ride at the bottom rides with W / S (or ↑ / ↓) setting your power.</p>
+        <p class="note"><button id="btn-ant-help" type="button" class="small" title="How to get the ANT+ stick working in Chrome (video)">▶ ANT+ stick: how to set it up on Windows (video)</button></p>
+        <p class="note">Which devices, browsers, trainers and sensors work, and why: <a href="requirements.html" target="_blank" rel="noopener" style="color:var(--accent)">What you need to ride</a>.</p>
+        <p id="bt-note" class="note">Use either, or mix them: e.g. the trainer on ANT+ and the strap on Bluetooth. A Bluetooth trainer can only take
+          resistance control from one app at a time, so close Zwift first.</p>
+        <p class="note"><b>Garmin or other watch for heart rate?</b> Turn on its <i>Broadcast heart rate</i>, then <b>Add a Bluetooth device</b>
+          and pick the watch. If it isn't in the list, it's still connected to another app (Zwift, the Garmin app): close that first,
+          or use the ANT+ stick: Garmin watches broadcast on ANT+ too.</p>
+        <p id="ant-msg" class="note"></p>
+        <label class="test">Test resistance <span id="test-grade-val">0.0%</span>
+          <input id="test-grade" type="range" min="-10" max="15" step="0.5" value="0" disabled></label>
+        <p class="note">Once the trainer shows ✓, pedal and move this to feel a slope. It goes back to the route's gradient when you ride.</p>
+      </section>
+
+      <section id="sec-route" class="pre-ride">
+        <h2><span class="tile"><svg class="ic"><use href="#i-map"/></svg></span><span>Route<small>Pick a ride, plan your own on the map, or bring a file</small></span></h2>
+        <div class="tabs">
+          <button id="tab-suggest" class="tab active">Routes</button>
+          <button id="tab-plan" class="tab">Plan on map</button>
+          <button id="tab-gpx" class="tab">Load GPX file</button>
+        </div>
+        <div id="pane-suggest"></div>
+        <div id="pane-plan" class="hidden">
+          <div class="row search">
+            <input id="plan-q" type="text" placeholder="Postcode or place, e.g. B60 4NW">
+            <button id="plan-find">Find</button>
+          </div>
+          <div id="plan-map"></div>
+          <div class="row tools">
+            <select id="plan-profile" title="What kind of roads the route prefers">
+              <option value="fastbike">Road bike (direct, tarmac)</option>
+              <option value="safety">Quiet roads (avoids busy roads)</option>
+              <option value="trekking">Touring (lanes and cycle paths)</option>
+            </select>
+            <label class="check"><input id="plan-loop" type="checkbox"> Back to start</label>
+            <button id="plan-undo">Undo</button>
+            <button id="plan-clear">Clear</button>
+            <button id="plan-save" disabled title="Download this route as a GPX file">Save GPX</button>
+          </div>
+        </div>
+        <div id="pane-gpx" class="hidden">
+          <input id="gpx" type="file" accept=".gpx,.tcx,.fit,.kml,application/gpx+xml">
+          <p class="note">A GPX, TCX, FIT or KML route from Strava, Komoot, RideWithGPS, Garmin or Google Earth. Routes with elevation give you real gradients.</p>
+          <div id="gpx-save" class="savebox hidden">
+            <h3>Save this route</h3>
+            <div class="row">
+              <label>Name<input id="save-name" type="text" maxlength="60"></label>
+              <label>Where<input id="save-where" type="text" maxlength="40" placeholder="e.g. Peak District"></label>
+            </div>
+            <label>Description<input id="save-blurb" type="text" maxlength="300" placeholder="What makes it worth riding"></label>
+            <label id="save-server-wrap" class="check hidden"><input id="save-server" type="checkbox"> Save straight as a RideWorld route (everyone sees it)</label>
+            <button id="btn-save-route">Save to My routes</button>
+          </div>
+        </div>
+        <p id="route-msg" class="note"></p>
+        <div class="row skip-row">
+          <label title="Start part-way along the route. Segment times still count; the whole-route time, ghosts and route editing don't on a part-way start.">Start at
+            <span class="skip-in"><input id="cfg-skip" type="number" min="0" step="0.5" value="0" inputmode="decimal"> <span id="skip-unit">km</span> in</span></label>
+          <p id="skip-msg" class="note"></p>
+        </div>
+        <div class="row ow-start-row" id="ow-start-row" hidden>
+          <label title="Open world: a pre-plotted route (the satnav takes you round), or ride freely from a start">Ride <select id="cfg-owstart"></select></label>
+        </div>
+      </section>
+
+      <section id="sec-workout" class="pre-ride">
+        <h2><span class="tile"><svg class="ic"><use href="#i-zap"/></svg></span><span>Workout<small>Structured intervals, with ERG holding your target power</small></span></h2>
+        <div class="row">
+          <label>Workout<select id="cfg-workout"></select></label>
+          <label>Intensity (%)<input id="cfg-wo-int" type="number" min="50" max="150" step="5" value="100"></label>
+          <label>Length (min)<input id="cfg-wo-len" type="number" min="10" max="240" step="5" placeholder="as written"></label>
+        </div>
+        <canvas id="wo-preview" class="hidden"></canvas>
+        <p class="note" id="wo-info"></p>
+        <label class="check" id="wo-erg-row"><input id="cfg-erg" type="checkbox" checked> ERG: the trainer holds the target power (free-ride parts ride the road)</label>
+        <div class="row">
+          <button id="wo-build" class="primary">＋ Build a workout</button>
+          <button id="wo-edit" class="hidden">Edit</button>
+          <button id="wo-import">Import a Zwift workout (.zwo)</button>
+          <button id="wo-delete" class="hidden">Delete this workout</button>
+        </div>
+        <p class="note">Targets are a share of your FTP (rider settings). The workout runs on ride time, so it waits when
+          you pause. Your speed still comes from your power, so in ERG the scenery goes by at the pace you're making.</p>
+      </section>
+
+      <section id="sec-music">
+        <h2><span class="tile"><svg class="ic"><use href="#i-music"/></svg></span><span>Sound &amp; music<small>Ride sounds, and your own soundtrack from YouTube</small></span></h2>
+        <p class="note">Ride sounds play quietly under the music: your chain and tyres, gravel and cobbles, the freewheel ticking, wind,
+          and a whoosh when someone passes. 🔊 in the ride turns them off and on.</p>
+        <label class="check"><input id="cfg-ambient" type="checkbox" checked> Outdoor sounds: birdsong, leaves in the wind, traffic in towns</label>
+        <h3>Music</h3>
+        <div class="music-pick">
+          <div class="music-in">
+            <input id="cfg-music" type="url" maxlength="300" placeholder="Paste a YouTube or YouTube Music playlist or song link" autocomplete="off">
+            <button id="music-paste" type="button" title="Paste the link you copied">Paste</button>
+            <button id="music-clear" type="button" title="No music this ride">✕</button>
+          </div>
+          <div id="music-card" class="music-card hidden"><img id="music-thumb" alt=""><div><b id="music-title"></b><span id="music-check" class="note"></span></div></div>
+          <p class="note">Find a playlist or song on <a href="https://music.youtube.com/" target="_blank" rel="noopener">YouTube Music</a> or
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a> (opens a new tab), choose <b>Share → Copy link</b>,
+            come back and press <b>Paste</b>. It plays beside the heart-rate dial; M plays / pauses, N skips.</p>
+          <div id="music-recent" class="music-recent"></div>
+        </div>
+        <details class="note-more"><summary>Music that won't play?</summary>
+          <p class="note">Playlists must be public or unlisted ("Liked music" and other private lists won't play), and a few songs whose
+            owners block other sites get skipped. With YouTube Premium, signed in to Google in this browser, there shouldn't be ads.
+            Spotify, Apple Music or the YouTube Music app instead? Play it as usual: your keyboard's media keys and Chrome's media
+            button still work while you ride.</p></details>
+      </section>
+
+      <section id="sec-pacers" class="pre-ride">
+        <h2><span class="tile"><svg class="ic"><use href="#i-timer"/></svg></span><span>Pacers &amp; ghosts<small>Someone to chase: steady pacers, your past rides, segment times</small></span></h2>
+        <div id="bots-list"></div>
+        <button id="bot-add">Add a pacer</button>
+        <input id="cfg-bots" type="hidden" value="[]">
+        <p class="note">A pacer rides at its power on the flat, 20% easier downhill and 10% harder uphill, with your weight and
+          position. It sets off when you start and waits when you pause. Only you see your pacers.</p>
+        <h3>Segments on this route</h3>
+        <div id="seg-list"></div>
+        <h3>Ghosts on this route</h3>
+        <div id="ghost-list"><p class="note">Pick a route to see your ghosts.</p></div>
+        <p class="note">Every ride you finish on a saved route becomes a ghost: a see-through rider replaying it against your
+          time (it pauses when you do). Tick the ones to ride against; your best is ticked to start with. Simulator rides
+          are kept too but never count as your best.</p>
+      </section>
+
+      <section id="sec-group" class="pre-ride">
+        <h2><span class="tile"><svg class="ic"><use href="#i-users"/></svg></span><span>Ride with others<small>Drop in on anyone riding, or start a group ride for friends</small></span></h2>
+        <label class="check"><input id="mp-dropin" type="checkbox" checked> See anyone else riding the same RideWorld route (drop-in)</label>
+        <h3>Group rides</h3>
+        <div id="mp-groups"></div>
+        <div class="savebox">
+          <h3>Start a group ride</h3>
+          <div class="row">
+            <label>Name<input id="mp-name" type="text" maxlength="60" placeholder="e.g. Thursday lunch ride"></label>
+            <label>Keep everyone together?
+              <select id="mp-banding">
+                <option value="firm">Firm: always together</option>
+                <option value="soft">Soft: a gentle pull</option>
+                <option value="off">Off: it's a race</option>
+              </select></label>
+          </div>
+          <p class="note">Uses the RideWorld route selected in Routes. Friends join from this list; you start everyone together.</p>
+          <button id="mp-create">Create group ride</button>
+        </div>
+        <p id="mp-status" class="note"></p>
+      </section>
+
+      <section id="sec-rides">
+        <h2><span class="tile"><svg class="ic"><use href="#i-history"/></svg></span><span>My rides<small>Every ride you've finished: files, photos and sharing</small></span></h2>
+        <div id="rides-list"></div>
+        <h3 class="sub" id="clips-head" hidden>🎬 Ride clips <small>recorded with V or the phone remote: play here, or save the MP4</small></h3>
+        <div id="clips-list"></div>
+      </section>
+
+      <section id="sec-strava">
+        <h2><span class="tile"><svg class="ic"><use href="#i-upload"/></svg></span><span>Strava<small>Send every ride straight to Strava</small></span></h2>
+        <div class="row strava">
+          <span id="strava-status" class="note">Checking…</span>
+          <button id="btn-strava" class="hidden">Connect with Strava</button>
+        </div>
+        <label class="check"><input id="cfg-shots" type="checkbox" checked> Take a few photos during the ride. At Go ride Chrome asks to share this tab: choose it so the photos show everything on screen</label>
+        <p class="note">Strava doesn't let other apps add photos to an activity, so RideWorld can't send them. They're kept with
+          the ride (📸 in My rides, where you can download them all, and its share page): add them on Strava yourself
+          (the activity → Add photos).</p>
+        <input id="cfg-autoStrava" type="hidden" value="0">
+      </section>
+
+    </div>
+    </div>
+  </div>
+
+  <!-- the launch screen while the scenery loads (ui.js launch) -->
+  <div id="launch" class="hidden" aria-live="polite"><div class="launch-card">
+    <div class="launch-thumb" id="launch-thumb"></div>
+    <p class="launch-k">Heading to</p>
+    <h2 id="launch-route">your route</h2>
+    <div class="launch-bar"><i id="launch-fill"></i></div>
+    <ol class="launch-steps" id="launch-steps"><li>Loading the scenery</li><li>Flying to the start</li><li>Measuring the road</li></ol>
+  </div></div>
+  <!-- the boxes in the middle under the top bar, one under another so they never cover each other (the owner 2026-11-18) -->
+  <div id="top-stack">
+  <div id="nav-box" hidden><span class="nav-ic">🧭</span><span id="nav-to"></span><b id="nav-left"></b><span id="nav-turn" hidden>↩ turning round is quicker (U)</span><button id="nav-cancel" type="button" title="Satnav off">✕</button></div>
+  <div id="ow-choice" hidden><div class="ow-head">junction in <b id="ow-dist"></b> <span class="ow-keys">↑ ← →</span></div><div id="ow-ways"></div></div>
+  <div id="seg-live" class="hidden"></div>
+  <div id="coach-say" class="hidden" aria-live="polite"></div>
+  </div>
+  <div id="name-banner" aria-live="polite"></div>
+  <div id="wo-panel" class="hidden">
+    <div class="wo-top">
+      <span id="wo-name"></span><span id="wo-now"></span><span id="wo-next"></span>
+      <span class="wo-btns"><button id="wo-easier" title="Easier: targets 5% lower (− key)">−5%</button><button id="wo-harder" title="Harder: targets 5% higher (= key)">+5%</button><button id="wo-skip" title="Skip to the next interval">Skip ▶</button><button id="wo-erg" title="ERG: the trainer holds the target">ERG</button></span>
+    </div>
+    <canvas id="wo-bar"></canvas>
+  </div>
+  <div id="toast" class="hidden"></div>
+
+  <div id="editor" class="panel hidden">
+    <h2>Route editor</h2>
+    <p class="note" id="ed-where"></p>
+    <div class="ed-block">
+      <h3>Stretch to change <span class="opt">(blue; white = where the line was)</span></h3>
+      <p class="note">Normally 30 m either side of you. For a longer fix, set where it starts and ends.</p>
+      <p id="ed-stretch" class="ed-value"></p>
+      <div class="row">
+        <button id="ed-start" title="[ : for a long stretch, jump to where it begins and press this">Stretch starts here</button>
+        <button id="ed-end" title="] : then jump to where it ends and press this">Stretch ends here</button>
+        <button id="ed-around" title="The usual: 30 m either side of the rider, following you">Back to around me</button>
+      </div>
+    </div>
+    <div class="ed-block">
+      <h3>Nudge</h3>
+      <div class="ed-pad">
+        <button id="ed-up" title="↑ raise 0.25 m">▲</button>
+        <button id="ed-left" title="← 0.5 m left">◀</button>
+        <button id="ed-right" title="→ 0.5 m right">▶</button>
+        <button id="ed-down" title="↓ lower 0.25 m">▼</button>
+      </div>
+      <p id="ed-change" class="ed-value"></p>
+    </div>
+    <div class="row">
+      <button id="ed-straight" title="S: replace the stretch with a straight line between its two ends (takes out kinks); saves straight away">Straighten stretch</button>
+      <button id="ed-level" title="L: make the height a straight line between the stretch's two ends (takes out a dip or hump in the map height); saves straight away">Level stretch</button>
+      <button id="ed-mine" title="Over this stretch the road follows your recording's heights instead of Google's 3D, where Google's model has a hump or hollow that isn't there. RideWorld builds cuttings, embankments, viaducts or a tunnel to fit; saves straight away">Use my heights</button>
+    </div>
+    <div class="row">
+      <button id="ed-keep" class="primary" title="Enter: adds it to the route and saves">Keep change</button>
+      <button id="ed-cancel" title="Throw away the nudges you haven't kept">Undo change</button>
+    </div>
+    <div class="ed-block">
+      <h3>Corrections on this route</h3>
+      <div id="ed-list"></div>
+      <p id="ed-saved" class="note"></p>
+    </div>
+    <div class="ed-block">
+      <h3>Line up with Google's road</h3>
+      <p class="note">OpenStreetMap's line can be a few metres off the road you see, so the markings sit to one side. This flies
+        along the whole route looking down, finds the road in Google's imagery and moves the route onto it. A few minutes;
+        saves by itself.</p>
+      <div class="row"><button id="ed-find">Find the road</button><button id="ed-find-undo">Undo road centring</button></div>
+      <p id="ed-find-msg" class="note"></p>
+    </div>
+    <div class="ed-block">
+      <h3>Crop the route</h3>
+      <p class="note">Ride or jump (J, or drag along the graph) to where the route should begin and press Route starts here,
+        then to where it should end and press Route ends here. Each saves and reloads the route. The file itself isn't
+        changed: Reset crop brings the whole route back.</p>
+      <div class="row"><button id="ed-crop-start">Route starts here</button><button id="ed-crop-end">Route ends here</button><button id="ed-crop-reset">Reset crop</button></div>
+      <p id="ed-crop-msg" class="note"></p>
+    </div>
+    <div class="ed-block">
+      <h3>Segments <span class="opt">(timed, with a leaderboard)</span></h3>
+      <p class="note">Set the stretch with [ and ] (a climb from bottom to top, a sprint), then mark it.</p>
+      <button id="ed-seg">Mark stretch as a segment</button>
+      <div id="ed-segs"></div>
+    </div>
+    <div class="row end">
+      <button id="ed-close" title="Esc">Close</button>
+    </div>
+    <p class="note">How to: J to jump, or drag along the graph at the bottom · ← → move the line, ↑ ↓ raise/lower the rider · Enter (Keep change) saves it ·
+      then jump to the next spot. [ ] pin the start/end of a longer stretch; S straightens it, L levels its height. Show jumps to a correction, × removes it.
+      Drag or scroll to move the camera, C to change view, Esc to close.</p>
+  </div>
+
+  <div id="end-box" class="panel hidden" role="dialog" aria-live="polite">
+    <p class="finish-flag" id="end-flag">🏁 End of the route</p>
+    <p id="end-text" class="note"></p>
+    <div class="row">
+      <button id="end-keep" class="primary" title="Close this and carry on: same road, the other way">↩ Keep riding</button>
+      <button id="end-finish" title="End the ride: summary, save, Strava, then back to setup">🏁 Finish</button>
+    </div>
+  </div>
+  <div id="finish-panel" class="panel hidden">
+    <p class="finish-flag" id="finish-flag">🏁 Route complete</p>
+    <h2 id="finish-route"></h2>
+    <div id="finish-stats" class="stats"></div>
+    <div class="row end">
+      <button id="finish-close">Keep looking around</button>
+      <button id="finish-setup">Back to setup</button>
+      <button id="finish-analyse">📈 Analyse</button>
+      <button id="finish-save">Save .fit</button>
+      <button id="finish-strava" class="primary hidden">Upload to Strava</button>
+    </div>
+    <div id="finish-coach" class="hidden"></div>
+    <div id="finish-photos" class="hidden"></div>
+    <p id="finish-strava-msg" class="note">Save the .fit and drag it onto <a href="https://www.strava.com/upload/select" target="_blank" rel="noopener">strava.com/upload</a>, or connect Strava on the setup screen to upload in one click.</p>
+    <div class="hidden">
+    </div>
+  </div>
+
+  <dialog id="dlg-analysis" class="panel wide">
+    <div class="an-head"><div><h2 id="an-title"></h2><p class="note" id="an-sub"></p></div><button id="an-close" class="small">Close</button></div>
+    <div id="an-tiles" class="coach-tiles"></div>
+    <div class="an-bar"><span id="an-bar-text"></span><span class="an-bar-btns"><label class="an-smooth">Power smoothing <select id="an-smooth"><option value="1">1 s</option><option value="5" selected>5 s</option><option value="30">30 s</option></select></label><button class="small" id="an-zoom">Zoom in</button><button class="small" id="an-reset">Reset</button></span></div>
+    <div id="an-charts" class="an-charts">
+      <canvas id="an-c-p"></canvas><canvas id="an-c-h"></canvas><canvas id="an-c-c"></canvas><canvas id="an-c-v"></canvas><canvas id="an-c-e"></canvas>
+      <div id="an-axis" class="an-axis"></div>
+      <div id="an-sel" class="an-sel hidden"></div><div id="an-cross" class="an-cross hidden"></div><div id="an-tip" class="an-tip hidden"></div>
+    </div>
+    <div class="coach-grid an-grid">
+      <div class="coach-card wide"><h3>Intervals <small>found in the ride: click one to select it</small></h3><div id="an-intervals"></div></div>
+      <div class="coach-card" id="an-zones"></div>
+      <div class="coach-card" id="an-bests"></div>
+    </div>
+  </dialog>
+  <dialog id="dlg-builder" class="panel wide">
+    <h2>Workout builder</h2>
+    <div class="row"><label>Name<input id="wb-name" type="text" maxlength="60" placeholder="e.g. Tuesday threshold"></label><label>Description <span class="opt">optional</span><input id="wb-desc" type="text" maxlength="300"></label></div>
+    <canvas id="wb-preview" class="wb-preview"></canvas>
+    <p class="note" id="wb-info"></p>
+    <div id="wb-blocks" class="wb-blocks"></div>
+    <div id="wb-add" class="wb-add"></div>
+    <p class="note">Power is a share of your FTP, so the workout grows with you. Times are minutes, or m:ss (1:30). Cadence is a target shown in the ride, left empty for any.</p>
+    <div class="row end"><button id="wb-cancel">Cancel</button><button id="wb-save" class="primary">Save to My workouts</button></div>
+  </dialog>
+  <dialog id="dlg-goal" class="panel">
+    <h2>Weekly goal</h2>
+    <div class="row goal-row"><label>Goal<select id="goal-kind"><option value="time">Time riding</option><option value="dist">Distance</option><option value="rides">Number of rides</option></select></label>
+      <label>Each week (<span id="goal-unit">hours</span>)<input id="goal-amount" type="number" min="0.5" step="0.5"></label></div>
+    <p class="note">Weeks run Monday to Sunday. Meet it week after week and your streak grows (🔥 on the setup screen). Only rides you keep count, not simulator rides.</p>
+    <h3>Your totals on RideWorld</h3>
+    <div id="goal-totals" class="ms"></div>
+    <div class="row end"><button id="goal-clear">No goal</button><button id="goal-close">Close</button><button id="goal-save" class="primary">Save goal</button></div>
+  </dialog>
+  <dialog id="dlg-rc" class="panel">
+    <h2><svg class="ic"><use href="#i-phone"/></svg> Your phone as a remote</h2>
+    <div class="rc-help">
+      <div class="rc-qr big" id="rc-qr-big" aria-label="QR code for the phone remote"></div>
+      <div>
+        <p>Point your phone's camera at the code, or open <a id="rc-link" target="_blank" rel="noopener"></a> on it and sign in. Leave it open on the bars while you ride: it works with the ride on this computer.</p>
+        <ul class="rc-list">
+          <li><b>Start and pause</b>, and finish the ride</li>
+          <li><b>Switch cameras</b>, film mode, the clean road</li>
+          <li><b>Take a photo</b> of the screen, saved with your ride</li>
+          <li><b>Workouts:</b> easier, harder, skip, ERG</li>
+          <li><b>Music</b> play / next, ride sounds, a 🎩 chapeau</li>
+          <li>Your <b>power, heart rate, speed and time</b> at a glance</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row end"><button id="rc-close" class="primary">Got it</button></div>
+  </dialog>
+  <dialog id="dlg-accounts" class="panel">
+    <h2>Accounts</h2>
+    <table class="users"><tbody id="user-list"></tbody></table>
+    <h3>Add someone</h3>
+    <form id="add-user" class="row wrap">
+      <label>Username<input name="username" type="text" required pattern="[a-z0-9._-]{2,32}" autocapitalize="none" placeholder="lowercase, e.g. pete"></label>
+      <label>Name<input name="name" type="text" maxlength="60" placeholder="Alex Smith"></label>
+      <label class="check"><input name="admin" type="checkbox"> Admin</label>
+      <button class="primary" type="submit">Add</button>
+    </form>
+    <p id="accounts-msg" class="note"></p>
+    <h3>Registered interest <span id="interest-count" class="opt"></span></h3>
+    <p class="note">From "Register your interest" on the sign-in page. <em>Approve</em> makes their account (username from
+      their name, a generated password) and emails them the sign-in details with your notes below.</p>
+    <table class="users"><tbody id="interest-list"></tbody></table>
+    <h3>Email (Brevo)</h3>
+    <p class="note" id="mail-status">Emails you when someone registers interest, and thanks them. Uses your Brevo account's API key
+      (Brevo: SMTP &amp; API, API keys). The sender must be a sender or domain verified in Brevo.</p>
+    <form id="mail-form" class="mail-form">
+      <label>API key <span class="opt" id="mail-key-saved"></span><input name="apiKey" type="password" autocomplete="off" placeholder="xkeysib-…"></label>
+      <div class="row wrap">
+        <label>Send from<input name="from" type="email" placeholder="hello@rideworld.example.org"></label>
+        <label>Sender name<input name="fromName" type="text" maxlength="60" placeholder="RideWorld"></label>
+      </div>
+      <label>Send registrations to <span class="opt">(your inbox)</span><input name="notify" type="email" placeholder="you@example.org"></label>
+      <label class="check"><input name="thanks" type="checkbox" checked> Send each person a thank-you email</label>
+      <label>Notes in the welcome email <span class="opt">(sent with their username and password when you Approve; a blank line starts a new paragraph; empty = the standard notes)</span>
+        <textarea name="welcomeNotes" rows="7" maxlength="3000"></textarea></label>
+      <div class="row"><button class="primary" type="submit">Save</button><button type="button" id="mail-test">Send a test email</button><button type="button" id="mail-welcome" title="The welcome email an approved rider gets, sent to you with made-up details">Preview welcome email</button></div>
+      <p id="mail-msg" class="note"></p>
+    </form>
+    <div class="row end"><button id="close-accounts" type="button">Close</button></div>
+  </dialog>
+
+  <dialog id="dlg-route-details" class="panel">
+    <h2>Route details</h2>
+    <form id="route-details">
+      <label>Name<input id="rd-name" type="text" maxlength="60" required></label>
+      <label>Where <span class="opt">(shown beside the name)</span><input id="rd-where" type="text" maxlength="40" placeholder="e.g. Snowdonia"></label>
+      <label>Description<textarea id="rd-blurb" maxlength="300" rows="3" placeholder="What makes it worth riding"></textarea></label>
+      <label>Highest clean-road bank <span class="opt">(metres up or down from the road; blank = usual, up to 15)</span><input id="rd-banks" type="number" min="0" max="15" step="0.5" placeholder="usual"></label>
+      <p class="note">The brown banks fill the gap between the clean road and the scenery beside it, which hillside roads need. In towns they can climb into trees and buildings: try 1.</p>
+      <label class="check"><input id="rd-camhigh" type="checkbox"> Raise the camera over trees, walls and hillsides <span class="opt">(views from behind go high where something would be in the way; untick to keep the low view, e.g. for filming open mountain roads)</span></label>
+      <label>Scenery <span class="opt">which 3D world this route is ridden in</span><select id="rd-scenery">
+        <option value="">Rider's choice (Settings → Scenery type)</option>
+        <option value="generated">Generated world only (towns and busy places: Google's 3D is messy here)</option>
+        <option value="photo">Photo-real 3D when the computer can (open mountain roads)</option></select></label>
+      <label class="check"><input id="rd-hedges" type="checkbox"> Hedgerows in the generated world <span class="opt">(England: found in the Environment Agency's laser survey along the lanes)</span></label>
+      <label class="check"><input id="rd-trusted" type="checkbox"> This file's heights are reliable <span class="opt">(a ride recorded on a GPS head unit: gradients come from the file, and the 3D road is kept within 10 m of it, so an unmapped tunnel or bridge can't throw it off)</span></label>
+      <p id="rd-msg" class="note"></p>
+      <div class="row end"><button type="button" id="rd-cancel">Cancel</button><button class="primary" type="submit">Save</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-advanced" class="panel">
+    <h2>Advanced options</h2>
+    <label class="check" title="In the open worlds, the camera flies round each named landmark for a few seconds as you pass it, with its name">
+      <input type="checkbox" id="cfg-lmshots" checked> Landmark fly-bys</label>
+    <details class="adv-graphics">
+      <summary>Graphics <small>(detail, priority, the view at the start: most people never need these)</small></summary>
+      <div class="row">
+            <label hidden>Scenery type
+              <select id="cfg-world" title="Full 3D draws Google's photo-real cities, trees and buildings. Lite draws satellite imagery on the real hills with RideWorld's own road: the same route, heights and gradients, smooth on a laptop">
+                <option value="auto" selected>Auto (Lite on laptop graphics)</option>
+                <option value="full">Full 3D (Google photo-real, where the route allows it)</option>
+                <option value="lite">Lite (fast: satellite map on real hills)</option>
+              </select></label>
+            <label>Detail
+              <select id="cfg-quality">
+                <option value="auto" selected>Auto (recommended: suits this computer)</option>
+                <option value="24">Low</option>
+                <option value="16">Normal</option>
+                <option value="12">Balanced</option>
+                <option value="8">High</option>
+                <option value="4">Ultra</option>
+              </select></label>
+            <label>View at the start
+              <select id="cfg-startcam" title="The camera a ride settles on after the opening shot of the start line; C changes it during the ride">
+                <option value="Default" selected>Default (behind, mountains in view)</option>
+                <option value="High chase">High chase</option>
+                <option value="Chase">Chase</option>
+                <option value="Drone">Drone</option>
+                <option value="slideshow">Slideshow (a new view every 30 s)</option>
+              </select></label>
+            <label title="Sun shadows from buildings, trees, walls and the riders (generated world). They cost frame rate: Auto turns them on for gaming graphics only.">Shadows
+            <select id="cfg-shadows"><option value="auto" selected>Auto</option><option value="on">On</option><option value="off">Off</option></select></label>
+          <label>Priority
+              <select id="cfg-target">
+                <option value="sharp" selected>Sharp: best picture, steady ~30 fps</option>
+                <option value="smooth">Smooth: aim for 50+ fps</option>
+              </select></label>
+          </div>
+      <p class="note">Each route sets its own kind of scenery (photo-real 3D, the generated world, or an open world). Detail sets how
+        much distant scenery loads; the frame-rate pill in the ride shows what this computer settled on. Saved per browser.</p>
+    </details>
+    <h3>Ride clips</h3>
+    <div class="row"><label title="V (or ⏺ on the phone remote) records the 3D view; it stops by itself after this long">Clip length
+      <select id="cfg-clipsecs"><option value="20">20 s</option><option value="30">30 s</option><option value="60" selected>1 min</option><option value="120">2 min</option><option value="300">5 min</option></select></label></div>
+    <h3>Open worlds</h3>
+    <div class="row"><label class="check" title="Open worlds (Bromsgrove): the ground painted from the map (fields, gardens, parks, roads with pavements, roofs, trees) instead of the satellite photo. G switches during a ride."><input id="cfg-paint" type="checkbox" checked> Painted ground (G switches to the satellite photo)</label></div>
+    <h3>Clean road</h3>
+    <div class="row">
+      <label class="check"><input id="cfg-clean" type="checkbox"> Clean road</label>
+      <label class="check" title="Every couple of seconds the clean road, its banks and hedges take on the colours of Google's scenery beside them"><input id="cfg-tint" type="checkbox"> Match the scenery's colours (road, banks, hedges)</label>
+      <label>Road width (m)<input id="cfg-clean-w" type="number" min="2" max="10" step="0.5" value="4"></label>
+    </div>
+    <p class="note">Cuts Google's model out along the road around you (melted cars, bins, lumps) and lays a plain road
+      surface instead. K switches it on and off during a ride, to compare.</p>
+    <h3>Trainer difficulty</h3>
+    <label>How much of each climb the trainer gives you <span id="cfg-diff-val">50%</span>
+      <input id="cfg-diff" type="range" min="0" max="100" step="5" value="50"></label>
+    <p class="note">50% is the usual (Zwift's default too): a 10% climb feels like 5%. The gradient on screen and your speed
+      don't change, only the resistance. <button id="diff-reset" type="button" class="small">Back to 50%</button></p>
+    <h3>Virtual gears</h3>
+    <label class="check"><input id="cfg-vgears" type="checkbox"> Virtual gears (for a Zwift Cog or any single gear)</label>
+    <p class="note">RideWorld does the shifting: 24 gears, [ easier and ] harder (or the − / + on screen, or the phone
+      remote). Each gear changes how hard the trainer pushes back, as a real gear would. Gear 12 feels exactly as
+      without gears; your speed still comes from your power.</p>
+    <div class="row end"><button id="close-advanced" type="button" class="primary">Done</button></div>
+  </dialog>
+
+  <dialog id="dlg-keys" class="panel">
+    <h2>Keys (admin)</h2>
+    <h3>Scenery</h3>
+    <div id="keys">
+      <label>Google Maps API key <span class="opt">(Photorealistic 3D Tiles, best)</span>
+        <input id="cfg-google" type="password" placeholder="AIza…" autocomplete="off"></label>
+      <label>Cesium ion token <span class="opt">(fallback: world terrain + imagery + OSM buildings)</span>
+        <input id="cfg-ion" type="password" placeholder="optional" autocomplete="off"></label>
+    </div>
+    <p class="note">Shared by every rider; only admins see them here.</p>
+    <div id="strava-admin" class="hidden savebox">
+      <h3>Strava app</h3>
+      <p class="note">From strava.com/settings/api. The secret is stored on the server only and never shown again.</p>
+      <div class="row">
+        <label>Client ID<input id="strava-id" type="text" inputmode="numeric" autocomplete="off"></label>
+        <label>Client Secret<input id="strava-secret" type="password" autocomplete="off"></label>
+      </div>
+      <button id="btn-strava-save">Save Strava app</button>
+    </div>
+    <div class="row end"><button id="close-keys" type="button" class="primary">Done</button></div>
+  </dialog>
+
+  <dialog id="dlg-nav" class="panel">
+    <form method="dialog" class="nav-form">
+      <h3>🧭 Go to… <small class="muted">the ride is paused while you choose</small></h3>
+      <label class="nav-pref" title="Quiet roads: keeps off main roads where it can and follows a road rather than zigzagging (a few % further). Most direct: the shortest way.">Way <select id="nav-pref"><option value="quiet">Quiet roads</option><option value="direct">Most direct</option></select></label>
+      <input id="nav-q" type="search" placeholder="A village, pub, street, school, park…" autocomplete="off">
+      <div id="nav-list"></div>
+      <h4 class="nav-or">…or pick a spot on the map</h4>
+      <div id="nav-map"></div>
+      <div class="row end"><button type="button" id="nav-map-nav" class="primary" disabled>🧭 Ride there</button><button type="button" id="nav-map-go" disabled>⤴ Jump there</button><button value="cancel">Close</button></div>
+    </form>
+  </dialog>
+  <dialog id="dlg-report" class="panel">
+    <h2>Report a problem here</h2>
+    <p id="rep-where" class="note"></p>
+    <img id="rep-img" class="rep-img" alt="">
+    <form id="rep-form">
+      <label>What's wrong? <span class="opt">(the screenshot, position, camera and your settings go with it)</span><textarea id="rep-note" maxlength="2000" rows="3" placeholder="e.g. black gaps beside the road, camera inside the hill"></textarea></label>
+      <p id="rep-msg" class="note"></p>
+      <div class="row end"><button type="button" id="rep-cancel">Cancel</button><button class="primary" type="submit">Send</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-ant-help" class="panel video">
+    <h2>Getting the ANT+ stick working in Chrome</h2>
+    <p class="note">Only once per stick and PC: Windows needs the stick on the WinUSB driver (Zadig, from zadig.akeo.ie).</p>
+    <video id="ant-video" src="media/ant-setup.mp4" controls playsinline preload="none"></video>
+    <div class="row end"><button id="close-ant-help" type="button">Close</button></div>
+  </dialog>
+
+  <dialog id="dlg-password" class="panel">
+    <h2>Change your password</h2>
+    <form id="change-password">
+      <label>Current password<input name="current" type="password" autocomplete="current-password" required></label>
+      <label>New password <span class="opt">(at least 10 characters)</span><input name="next" type="password" autocomplete="new-password" minlength="10" required></label>
+      <label>New password again<input name="again" type="password" autocomplete="new-password" minlength="10" required></label>
+      <p id="password-msg" class="note"></p>
+      <div class="row end"><button type="button" id="close-password">Cancel</button><button class="primary" type="submit">Change</button></div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+  <div id="join-fade" class="hidden"><div class="jf-of"></div><div class="jf-name"></div></div>
+</body>
+</html>

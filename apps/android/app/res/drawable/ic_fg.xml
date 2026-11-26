@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- a road bike: two wheels, the frame triangle, bars and saddle -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#00000000" android:strokeColor="#ffffff" android:strokeWidth="4"
+        android:pathData="M28,64m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0M80,64m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0" />
+    <path android:fillColor="#00000000" android:strokeColor="#ffffff" android:strokeWidth="4" android:strokeLineJoin="round" android:strokeLineCap="round"
+        android:pathData="M28,64L42,42L70,42L80,64M42,42L54,64L70,42M54,64L28,64M40,36h8M66,36l4,6l6,-2" />
+</vector>

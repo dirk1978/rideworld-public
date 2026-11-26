@@ -1,0 +1,11 @@
+# docker compose up -d   then open https://<this computer's address>:8443
+# (the first admin's password: docker compose logs rideworld)
+services:
+  rideworld:
+    build: .
+    restart: unless-stopped
+    ports: ["${PORT:-8443}:8443"]
+    env_file: [.env]
+    volumes:
+      - ./data:/app/data
+      - ./certs:/app/certs

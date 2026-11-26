@@ -1,0 +1,42 @@
+{
+ "note": "Tower Bridge from its south approach: the rider coming over the deck, the south tower and its high walkways, the City behind; box -0.0883,51.4985,-0.0623,51.5150",
+ "box": [
+  -0.0883,
+  51.4985,
+  -0.0623,
+  51.515
+ ],
+ "cam": [
+  -50.6,
+  -252.7,
+  1.4
+ ],
+ "camZ": 12.6,
+ "at": [
+  8.8,
+  -106.3,
+  0
+ ],
+ "atZ": 30,
+ "lens": 24,
+ "rider": {
+  "xy": [
+   -48.8,
+   -239.4
+  ],
+  "z": 11.4,
+  "heading": 247,
+  "frame": 8
+ },
+ "sun": {
+  "elev": 38,
+  "az": 55
+ },
+ "focus": 13.4,
+ "fstop": 4,
+ "size": [
+  1600,
+  1152
+ ],
+ "shift": 0.08
+}

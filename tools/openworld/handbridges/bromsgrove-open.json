@@ -1,0 +1,21 @@
+{
+ "note": "Bridges drawn by hand (tools/openworld/handbridges.mjs): the ridden path's line and heights (LIDAR datum) and the model built on them. A38 footbridge: OSM ways 24932984 (footway from Carnforth Road), 249835260 (the ramp, bridge=yes), 35970053 (the deck over the Bromsgrove Eastern Bypass, bridge=yes), 35970054 (footway to Fordhouse Road). Road under the deck ~86.2 m; deck surface 92.3 (5.7 m clear under the deck at 0.4 m thick... with the soffit ~91.9); ramp 1:15. the owner's Street View captures 2026-11-23 (share photos/to model/footbridge).",
+ "bridges": [
+  {
+   "name": "A38 footbridge", "model": "a38_footbridge", "dir": "bromsgrove", "title": "A38 footbridge", "blurb": "Steel truss footbridge and ramp over the Bromsgrove Eastern Bypass",
+   "origin": [52.3320992, -2.0499391], "datum": 86.0,
+   "pts": [
+    [52.3318171, -2.0496111, 84.61, "ground"],
+    [52.3318786, -2.0496705, 85.42, "ground"],
+    [52.3319471, -2.0496408, 85.94, "ramp"],
+    [52.3320922, -2.0494366, 87.37, "ramp"],
+    [52.3322472, -2.0492186, 88.86, "ramp"],
+    [52.3322699, -2.0492633, 89.13, "ramp"],
+    [52.3319449, -2.0497388, 92.30, "deck"],
+    [52.3320992, -2.0499391, 92.30, "deck"],
+    [52.3322681, -2.0501665, 92.30, "deck"],
+    [52.332448, -2.0504135, 89.55, "ground"]
+   ]
+  }
+ ]
+}

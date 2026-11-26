@@ -1,0 +1,89 @@
+{
+ "_": "Local corrections to OpenStreetMap applied by build.mjs (the owner knows these roads). twoWay: OSM way ids to treat as two-way. bridge: OSM way ids to treat as bridges (they take the surveyed deck in city worlds). ramp: OSM ways that run straight between their neighbours' end heights and count as bridge (a short approach the survey can't see as a deck). decks: OSM ways of bridges whose deck height to force: 'raised' (follow the survey even where trees / parapets break it up) or 'low' (keep the road's heights).",
+ "twoWay": {
+  "32151971": "Stoke Road, A38 roundabout to Sherwood Road: tagged oneway but also lanes:backward=2; the owner: straight on to the A38 (2026-11-16)",
+  "37906311": "Stoke Road, the same stretch"
+ },
+ "bridge": {
+  "971616048": "Tower Bridge Approach over St Katharine's Way, northbound piece: untagged in OSM, so it sat at the underpass's level (4 m) between the 10 m approach and the bridge (the owner's report 20261117T183513)",
+  "971616053": "the same, southbound piece",
+  "245601870": "Tower Bridge Approach, the last 12 m onto the bridge"
+ },
+ "ramp": {
+  "431794367": "Westminster Bridge's west end, Bridge Street junction (8 m) to the bridge proper (9 m), 25 m: untagged; the survey's ground dips 2.2 m under it and the rider dropped into it; tagged as bridge it took that ground (3.5 m) (2026-11-20)"
+ },
+ "decks": {
+  "1222469005": "raised: Evesham Street, Alcester (Stratford world), over the old railway: the survey is patchy (2026-11-20)",
+  "126530526": "raised: the lane near Charlecote over the River Dene, trees round it (2026-11-20)",
+  "46371780": "low: Harrow Road over the canal by Paddington Green; the Westway viaduct (layer 2) passes right over it and the survey read its deck, 43 m instead of ~24 m (2026-11-20)",
+  "46371781": "low: Harrow Road over the canal by Paddington Green; the Westway viaduct (layer 2) passes right over it and the survey read its deck, 43 m instead of ~24 m (2026-11-20)",
+  "46371779": "low: Harrow Road under the Westway viaduct by Paddington Green; the survey reads the Westway's deck (2026-11-20)",
+  "207990719": "low: Harrow Road under the Westway viaduct by Paddington Green; the survey reads the Westway's deck (2026-11-20)",
+  "207990721": "low: Harrow Road under the Westway viaduct by Paddington Green; the survey reads the Westway's deck (2026-11-20)"
+ },
+ "fill": [
+  {
+   "lat": 51.494372,
+   "lon": -0.121272,
+   "r": 20,
+   "h": 7.4,
+   "note": "south end of Lambeth Bridge: a pit in the ground model at the junction off the bridge (4.8 m, every road round it 5.7-8 m) (2026-11-20)"
+  },
+  {
+   "lat": 51.4855682,
+   "lon": -0.1499984,
+   "r": 12,
+   "h": 10.0,
+   "note": "south end of Chelsea Bridge: the 9 m link off the deck dropped to 7.5 m at its junction (a dip in the ground model by the river wall; every road round it 9.1-9.6 m) then climbed 3.2 m to the deck (the owner's report 2026-11-22, 'dip between the road and bridge')"
+  },
+  {
+   "lat": 51.4810629,
+   "lon": -0.1435387,
+   "r": 45,
+   "h": 4.5,
+   "note": "Battersea Power Station: the streets round it (Circus Road East / South, Pump House Lane) lay in the construction pit of the laser survey's date, down to -5 m with 14% ramps out (the ground round about ~4.5 m; the owner's report 2026-11-22, 'something very wrong around Battersea power station ramps')"
+  },
+  {
+   "lat": 51.4811081,
+   "lon": -0.1431781,
+   "r": 45,
+   "h": 4.5,
+   "note": "Battersea Power Station: the streets round it (Circus Road East / South, Pump House Lane) lay in the construction pit of the laser survey's date, down to -5 m with 14% ramps out (the ground round about ~4.5 m; the owner's report 2026-11-22, 'something very wrong around Battersea power station ramps')"
+  },
+  {
+   "lat": 51.48147,
+   "lon": -0.1430339,
+   "r": 45,
+   "h": 4.5,
+   "note": "Battersea Power Station: the streets round it (Circus Road East / South, Pump House Lane) lay in the construction pit of the laser survey's date, down to -5 m with 14% ramps out (the ground round about ~4.5 m; the owner's report 2026-11-22, 'something very wrong around Battersea power station ramps')"
+  },
+  {
+   "lat": 51.4818319,
+   "lon": -0.1430195,
+   "r": 45,
+   "h": 4.5,
+   "note": "Battersea Power Station: the streets round it (Circus Road East / South, Pump House Lane) lay in the construction pit of the laser survey's date, down to -5 m with 14% ramps out (the ground round about ~4.5 m; the owner's report 2026-11-22, 'something very wrong around Battersea power station ramps')"
+  },
+  {
+   "lat": 51.4821937,
+   "lon": -0.1430339,
+   "r": 45,
+   "h": 4.5,
+   "note": "Battersea Power Station: the streets round it (Circus Road East / South, Pump House Lane) lay in the construction pit of the laser survey's date, down to -5 m with 14% ramps out (the ground round about ~4.5 m; the owner's report 2026-11-22, 'something very wrong around Battersea power station ramps')"
+  },
+  {
+   "lat": 51.4809001,
+   "lon": -0.1438561,
+   "r": 35,
+   "h": 4.3,
+   "note": "Battersea Power Station pit, its edges (Circus Road South's west end, Pump House Lane's bend: 1-2 m after the first fills)"
+  },
+  {
+   "lat": 51.4810448,
+   "lon": -0.1428464,
+   "r": 35,
+   "h": 4.3,
+   "note": "Battersea Power Station pit, its edges (Circus Road South's west end, Pump House Lane's bend: 1-2 m after the first fills)"
+  }
+ ]
+}

@@ -1,0 +1,291 @@
+[
+ {
+  "ref": "39",
+  "name": "",
+  "len": 26.25,
+  "fall": 1.8,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.72,
+    "right": 9
+   },
+   "down": {
+    "left": 4.4,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "40",
+  "name": "Wilmcote Top Lock",
+  "len": 24.91,
+  "fall": 1.96,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 2.18,
+    "right": 9
+   },
+   "down": {
+    "left": 1.93,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "41",
+  "name": "",
+  "len": 24.6,
+  "fall": 2.14,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.96,
+    "right": 9
+   },
+   "down": {
+    "left": 5.57,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "42",
+  "name": "",
+  "len": 24.54,
+  "fall": 2.36,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 7.86,
+    "right": 9
+   },
+   "down": {
+    "left": 8.58,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "43",
+  "name": "",
+  "len": 24.99,
+  "fall": 1.8,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.87,
+    "right": 9
+   },
+   "down": {
+    "left": 2.82,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "44",
+  "name": "",
+  "len": 26.05,
+  "fall": 2.1,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.42,
+    "right": 9
+   },
+   "down": {
+    "left": 5.12,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "45",
+  "name": "",
+  "len": 25.55,
+  "fall": 2.23,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.05,
+    "right": 9
+   },
+   "down": {
+    "left": 4.82,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "46",
+  "name": "",
+  "len": 24.17,
+  "fall": 2.28,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.02,
+    "right": 9
+   },
+   "down": {
+    "left": 5.86,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "47",
+  "name": "",
+  "len": 23.3,
+  "fall": 2.19,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.04,
+    "right": 9
+   },
+   "down": {
+    "left": 3.51,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "48",
+  "name": "",
+  "len": 24.35,
+  "fall": 1.96,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.08,
+    "right": 9
+   },
+   "down": {
+    "left": 3.82,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "49",
+  "name": "",
+  "len": 24.79,
+  "fall": 2.25,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.21,
+    "right": 9
+   },
+   "down": {
+    "left": 4.44,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "50",
+  "name": "Wilmcote Bottom Lock",
+  "len": 25.27,
+  "fall": 2.15,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.71,
+    "right": 9
+   },
+   "down": {
+    "left": 4.6,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "51",
+  "name": "Bishopton Lock",
+  "len": 24.58,
+  "fall": 2.96,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.08,
+    "right": 9
+   },
+   "down": {
+    "left": 3.25,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "52",
+  "name": "One Elm Lock",
+  "len": 25.18,
+  "fall": 1.38,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 6,
+    "right": 9
+   },
+   "down": {
+    "left": 2.46,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "53",
+  "name": "",
+  "len": 24.84,
+  "fall": 2.04,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 2.16,
+    "right": 9
+   },
+   "down": {
+    "left": 2.57,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "54",
+  "name": "",
+  "len": 24.68,
+  "fall": 2.89,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.96,
+    "right": 9
+   },
+   "down": {
+    "left": 4.42,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "55",
+  "name": "Warwick Road Lock",
+  "len": 24.41,
+  "fall": 1.35,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.13,
+    "right": 9
+   },
+   "down": {
+    "left": 4.16,
+    "right": 9
+   }
+  }
+ }
+]

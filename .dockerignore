@@ -1,0 +1,7 @@
+data/
+certs/
+.env
+.git/
+node_modules/
+apps/windows/dist/
+apps/android/build/

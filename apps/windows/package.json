@@ -1,0 +1,37 @@
+{
+  "name": "rideworld-windows",
+  "productName": "RideWorld",
+  "version": "1.0.1",
+  "description": "RideWorld for Windows: the live site in its own window, with the fast graphics card, no tab throttling, remembered Bluetooth devices and screen capture without prompts.",
+  "main": "main.js",
+  "author": "RideWorld",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win zip --x64"
+  },
+  "build": {
+    "appId": "org.rideworld.app",
+    "productName": "RideWorld",
+    "files": [
+      "main.js",
+      "preload.js",
+      "icon.png"
+    ],
+    "win": {
+      "target": [
+        "zip"
+      ],
+      "icon": "icon.png",
+      "signAndEditExecutable": false
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8"
+  },
+  "license": "AGPL-3.0-or-later"
+}

@@ -1,0 +1,311 @@
+{
+ "note": "London landmark models (tools/kit/london/*.py -> public/models/london/<model>.glb), placed by tools/openworld/landmarks.mjs. heading: degrees clockwise from north of the model's +Y (number), 'auto' = squared to the footprint of the building at the point, or road: '<name>' = along the nearest stretch of that road (bridges: at its middle, on the deck). hide: metres round the point whose generated buildings go (their centroid), or 'footprint' = the building containing the point (hideAt: more points).",
+ "landmarks": [
+  {
+   "model": "elizabeth_tower",
+   "lat": 51.50072,
+   "lon": -0.12462,
+   "heading": "auto",
+   "hide": 9,
+   "title": "Elizabeth Tower (Big Ben)",
+   "blurb": "The clock tower of the Palace of Westminster, 96 m, finished 1859"
+  },
+  {
+   "model": "victoria_tower",
+   "lat": 51.49833,
+   "lon": -0.12545,
+   "heading": "auto",
+   "hide": 14,
+   "title": "Palace of Westminster",
+   "blurb": "The Houses of Parliament; the Victoria Tower rises 98.5 m"
+  },
+  {
+   "model": "central_tower",
+   "lat": 51.49959,
+   "lon": -0.12478,
+   "heading": "auto"
+  },
+  {
+   "model": "tower_bridge",
+   "title": "Tower Bridge",
+   "blurb": "Bascule and suspension bridge over the Thames, opened 1894",
+   "lat": 51.505539,
+   "lon": -0.075342,
+   "heading": 23,
+   "ground": 13.5,
+   "hideAt": [
+    [
+     51.5051744,
+     -0.0755968
+    ],
+    [
+     51.5058589,
+     -0.0751332
+    ],
+    [
+     51.5051411,
+     -0.0756193
+    ],
+    [
+     51.5059072,
+     -0.0751005
+    ],
+    [
+     51.5059261,
+     -0.0753934
+    ],
+    [
+     51.5052433,
+     -0.0758558
+    ]
+   ],
+   "near": 2500,
+   "note": "rebuilt 2026-11-22 (tools/kit/london/tower_bridge.py from tower_bridge_geo.json: the world's own deck heights, OSM's pier outlines, the river level): fixed placement so the model matches the geometry it was built from; hides OSM's tower parts and piers (drawn as plain boxes)"
+  },
+  {
+   "model": "eye",
+   "lat": 51.50346,
+   "lon": -0.11964,
+   "heading": 98,
+   "hide": 12,
+   "note": "2026-11-20: hub at the centre of OSM w204068874 (the wheel), rim along its axis (bearing 8).",
+   "title": "The London Eye",
+   "blurb": "A 135 m observation wheel on the South Bank, opened 2000"
+  },
+  {
+   "model": "stpauls",
+   "lat": 51.5137831,
+   "lon": -0.0983356,
+   "heading": -6.5,
+   "hide": "footprint",
+   "title": "St Paul's Cathedral",
+   "blurb": "Sir Christopher Wren's dome, completed 1710",
+   "note": "placed on OSM way 369161987's centre and long axis (6.5 deg north of east), 2026-11-22: 'heading auto' left it square to east and 7 m north, so its corners stood in St Paul's Churchyard (the owner's report)"
+  },
+  {
+   "model": "shard",
+   "lat": 51.50452,
+   "lon": -0.08649,
+   "heading": 0,
+   "hide": 32,
+   "title": "The Shard",
+   "blurb": "310 m, the UK's tallest building (2012)"
+  },
+  {
+   "model": "gherkin",
+   "lat": 51.51447,
+   "lon": -0.08033,
+   "heading": 0,
+   "hide": 30,
+   "title": "The Gherkin",
+   "blurb": "30 St Mary Axe, 180 m, opened 2004"
+  },
+  {
+   "model": "walkie_talkie",
+   "lat": 51.511292,
+   "lon": -0.083526,
+   "heading": 5.4,
+   "hide": 30,
+   "note": "2026-11-20: centre and axis of OSM w201247295 (Sky Garden, 71 x 59 m).",
+   "title": "The Walkie-Talkie",
+   "blurb": "20 Fenchurch Street, with the Sky Garden on top"
+  },
+  {
+   "model": "bt_tower",
+   "lat": 51.52151,
+   "lon": -0.13894,
+   "heading": 0,
+   "hide": 12,
+   "title": "BT Tower",
+   "blurb": "A 177 m telecommunications tower, opened 1965"
+  },
+  {
+   "model": "monument",
+   "lat": 51.51013,
+   "lon": -0.08594,
+   "heading": "auto",
+   "hide": 6,
+   "title": "The Monument",
+   "blurb": "To the Great Fire of London, 61 m tall, 1677"
+  },
+  {
+   "model": "nelson",
+   "lat": 51.50777,
+   "lon": -0.12796,
+   "heading": 0,
+   "hide": 5,
+   "title": "Nelson's Column",
+   "blurb": "Trafalgar Square, 52 m, 1843"
+  },
+  {
+   "model": "battersea",
+   "lat": 51.48183,
+   "lon": -0.14454,
+   "heading": "auto",
+   "hide": 80,
+   "title": "Battersea Power Station",
+   "blurb": "The art deco power station by the Thames, now shops and homes"
+  },
+  {
+   "model": "white_tower",
+   "lat": 51.50812,
+   "lon": -0.07595,
+   "heading": "auto",
+   "hide": 20,
+   "title": "Tower of London",
+   "blurb": "The White Tower, begun by William the Conqueror in 1078"
+  },
+  {
+   "model": "albert_hall",
+   "lat": 51.50096,
+   "lon": -0.17745,
+   "heading": 0,
+   "hide": 45,
+   "title": "Royal Albert Hall",
+   "blurb": "Concert hall opened by Queen Victoria in 1871"
+  },
+  {
+   "model": "abbey",
+   "lat": 51.49947,
+   "lon": -0.12854,
+   "heading": 5.1,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     51.49929,
+     -0.12731
+    ],
+    [
+     51.4992,
+     -0.128
+    ]
+   ],
+   "note": "2026-11-20: west door on the real west front (OSM w364313092), nave along its long axis (bearing 95.1).",
+   "title": "Westminster Abbey",
+   "blurb": "The coronation church since 1066"
+  },
+  {
+   "model": "buckingham",
+   "lat": 51.5015,
+   "lon": -0.14105,
+   "heading": 250,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     51.50136,
+     -0.14189
+    ]
+   ],
+   "title": "Buckingham Palace",
+   "blurb": "The monarch's London residence"
+  },
+  {
+   "model": "victoria_memorial",
+   "lat": 51.5019,
+   "lon": -0.14068,
+   "heading": 0,
+   "hide": 18,
+   "title": "Victoria Memorial",
+   "blurb": "Before Buckingham Palace, unveiled 1911"
+  },
+  {
+   "model": "admiralty_arch",
+   "lat": 51.50668,
+   "lon": -0.12844,
+   "road": "The Mall",
+   "hide": 30,
+   "title": "Admiralty Arch",
+   "blurb": "Between The Mall and Trafalgar Square, 1912"
+  },
+  {
+   "model": "wellington_arch",
+   "lat": 51.50259,
+   "lon": -0.15076,
+   "heading": 0,
+   "hide": 10,
+   "title": "Wellington Arch",
+   "blurb": "Hyde Park Corner, 1830"
+  },
+  {
+   "model": "st_pancras",
+   "lat": 51.53006,
+   "lon": -0.12575,
+   "heading": "auto",
+   "hide": 7,
+   "title": "St Pancras",
+   "blurb": "The Gothic station and hotel, opened 1868"
+  },
+  {
+   "model": "trafalgar",
+   "dir": "london",
+   "lat": 51.50777,
+   "lon": -0.12796,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     51.508403,
+     -0.128075
+    ],
+    [
+     51.508403,
+     -0.128826
+    ],
+    [
+     51.508403,
+     -0.127671
+    ],
+    [
+     51.508494,
+     -0.129692
+    ],
+    [
+     51.509127,
+     -0.12796
+    ],
+    [
+     51.509127,
+     -0.128826
+    ],
+    [
+     51.508856,
+     -0.127527
+    ],
+    [
+     51.509037,
+     -0.129403
+    ]
+   ],
+   "note": "Trafalgar Square (2026-11-20): granite paving over the square, the fountains (rims, bowls, jets), the National Gallery (portico, dome, cupolas, balustrade) from OSM shapes and LIDAR heights: tools/kit/london/trafalgar.py + trafalgar.json. Origin = Nelson's Column's ground; the generated Gallery buildings removed."
+  }
+ ],
+ "flavour": "london",
+ "styles": [
+  {
+   "style": "gothic",
+   "note": "Palace of Westminster",
+   "at": [
+    [
+     51.4995,
+     -0.1247
+    ],
+    [
+     51.4999,
+     -0.1244
+    ],
+    [
+     51.499,
+     -0.125
+    ],
+    [
+     51.5003,
+     -0.1242
+    ],
+    [
+     51.4987,
+     -0.1253
+    ]
+   ]
+  }
+ ]
+}

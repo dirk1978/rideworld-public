@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#04060c">
+  <title>RideWorld · What you need</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <style>
+    :root { --bg: #04060c; --card: rgba(255,255,255,.05); --line: rgba(255,255,255,.1); --fg: #f2f4f7; --muted: #9aa4b2; --accent: #ff6a1a;
+      --yes: #22c55e; --no: #ef4444; --maybe: #eab308; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(70vmax 50vmax at 0% 0%, rgba(255,106,26,.2), transparent 60%), radial-gradient(70vmax 50vmax at 100% 30%, rgba(255,46,126,.14), transparent 60%), var(--bg); color: var(--fg); line-height: 1.5; }
+    main { width: min(1000px, 100%); margin: 0 auto; padding: 28px 16px 40px; }
+    a { color: var(--accent); }
+    h1 { font-family: "Barlow Semi Condensed", Inter, sans-serif; font-style: italic; font-weight: 800; text-transform: uppercase; font-size: 44px; line-height: 1; margin: 0 0 10px; }
+    h1 em { font-style: italic; background: linear-gradient(100deg,#ffb057,#ff6a1a 40%,#ff3d86); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    h2 { font-size: 20px; margin: 34px 0 10px; }
+    .lead { color: var(--muted); margin: 0 0 18px; }
+    .key { display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+    .wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: 0 18px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(18px); }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 640px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+    td:first-child { font-weight: 600; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    .y, .n, .m { font-weight: 700; white-space: nowrap; }
+    .y { color: var(--yes); } .n { color: var(--no); } .m { color: var(--maybe); }
+    .y::before { content: "✓ "; } .n::before { content: "✗ "; } .m::before { content: "~ "; }
+    .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .why div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s; }
+    .why div:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.22); }
+    .why h3 { margin: 0 0 6px; font-size: 16px; }
+    .why p { margin: 0; color: #c9d1db; font-size: 14px; }
+    .back { display: inline-block; margin-bottom: 18px; font-size: 14px; }
+    small { color: var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <a class="back" href="/" id="back">← Back to RideWorld</a>
+  <h1>What you need to <em>ride</em></h1>
+  <p class="lead">RideWorld runs in your web browser: nothing to install. What works depends on the browser and the
+    device, mainly for connecting your trainer and heart-rate strap. In short: <strong>Chrome or Edge on a computer
+    works best</strong>, Chrome on an Android phone or tablet works with Bluetooth, and iPhones and iPads can only
+    ride in the simulator.</p>
+  <p class="key"><span class="y">works</span><span class="m">may work (see the notes)</span><span class="n">doesn't work</span></p>
+
+  <h2>Devices and browsers</h2>
+  <div class="wrap"><table>
+    <thead><tr><th>Device / browser</th><th>3D scenery</th><th>Bluetooth trainer &amp; HR</th><th>ANT+ USB stick</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Windows PC · Chrome or Edge</td><td class="y">yes</td><td class="y">yes</td><td class="y">yes</td><td>The best way to ride. The ANT+ stick needs a one-off driver change (Zadig, see setup).</td></tr>
+      <tr><td>Mac · Chrome or Edge</td><td class="y">yes</td><td class="y">yes</td><td class="m">probably</td><td>Bluetooth works. The ANT+ stick usually works without any driver change, but we haven't tested it on a Mac.</td></tr>
+      <tr><td>Chromebook · Chrome</td><td class="m">if fast enough</td><td class="y">yes</td><td class="m">probably</td><td>Fine on newer models; older, low-powered ones may struggle with the 3D.</td></tr>
+      <tr><td>Linux · Chrome</td><td class="y">yes</td><td class="m">maybe</td><td class="m">maybe</td><td>Bluetooth in Chrome on Linux is still experimental; the ANT+ stick needs a USB permission rule.</td></tr>
+      <tr><td>Any computer · Firefox</td><td class="y">yes</td><td class="n">no</td><td class="n">no</td><td>Firefox has no Bluetooth or USB for web pages: simulator only.</td></tr>
+      <tr><td>Mac · Safari</td><td class="y">yes</td><td class="n">no</td><td class="n">no</td><td>Safari has no Bluetooth or USB for web pages: use Chrome or Edge.</td></tr>
+      <tr><td>Android phone or tablet · Chrome</td><td class="y">yes</td><td class="y">yes</td><td class="m">maybe</td><td>Bluetooth works. Recent phones run smoothly; older or budget ones may be slow. An ANT+ stick needs a USB-C adapter and might work. Many phones (Samsung, Sony…) have ANT+ built in, but only installed apps can use it, not web pages.</td></tr>
+      <tr><td>iPhone / iPad · any browser</td><td class="y">yes</td><td class="n">no</td><td class="n">no</td><td>Simulator only. Some third-party browsers (e.g. Bluefy) add Bluetooth and may work.</td></tr>
+      <tr><td>Apple TV / smart TVs</td><td class="n">no</td><td class="n">no</td><td class="n">no</td><td>No suitable web browser. Show a computer or phone on the TV instead (HDMI, casting, AirPlay).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Trainers and sensors</h2>
+  <div class="wrap"><table>
+    <thead><tr><th>Equipment</th><th>Works?</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Smart trainer, Bluetooth (FTMS)</td><td class="y">yes</td><td>Wahoo, Tacx, Elite, Saris and others: RideWorld sets the slope (and ERG power in workouts).</td></tr>
+      <tr><td>Smart trainer, ANT+ FE-C</td><td class="y">yes</td><td>Through an ANT+ USB stick on a computer. Tested on a Wahoo Kickr Core.</td></tr>
+      <tr><td>Power meter, Bluetooth</td><td class="y">yes</td><td>Power and cadence; with a non-smart trainer you set the effort with your gears.</td></tr>
+      <tr><td>Heart-rate strap</td><td class="y">yes</td><td>Bluetooth (e.g. Polar H9/H10) or ANT+. An ANT+-only strap needs the USB stick.</td></tr>
+      <tr><td>No equipment</td><td class="y">yes</td><td>Press Simulator (beside Go ride) to ride with the arrow keys (or the − / + buttons on a phone).</td></tr>
+      <tr><td>Two apps at once</td><td class="n">no</td><td>Only one app can control a trainer: close Zwift or any other app first.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Why</h2>
+  <div class="why">
+    <div><h3>Bluetooth and USB in the browser</h3><p>Talking to a trainer from a web page needs Web Bluetooth (wireless)
+      or WebUSB (the ANT+ stick). Chrome and Edge have both; Firefox and Safari have neither. Apple makes every iPhone
+      and iPad browser use Safari's engine, even Chrome, so none of them can reach your sensors.</p></div>
+    <div><h3>The 3D scenery</h3><p>The world is Google's photorealistic 3D model, streamed as you ride. It needs a
+      graphics chip with WebGL 2 (any computer or phone from the last several years) and a steady connection: roughly
+      10-20 Mbit/s is comfortable. RideWorld lowers the detail by itself on slower machines; phones and tablets get
+      a smaller memory budget so they don't run out.</p></div>
+    <div><h3>The ANT+ stick on Windows</h3><p>Windows lets one program own a USB device. For Chrome to use the ANT+
+      stick it needs the general WinUSB driver instead of Garmin's (one-off, with the free Zadig tool; there's a video
+      in setup). Afterwards Garmin Express and Zwift's own ANT+ use need the original driver back.</p></div>
+    <div><h3>Phones and tablets</h3><p>They work well for riding, with a layout made for small screens and big
+      buttons. Keep the phone plugged in: 3D uses a lot of battery. RideWorld keeps the screen awake while you ride.
+      Tip: "Add to Home screen" opens it full screen like an app.</p></div>
+    <div><h3>Ride photos with the whole screen</h3><p>Photos that include the dials and maps use the browser's
+      "share this tab" feature, which only computer versions of Chrome and Edge have. Elsewhere photos show the 3D
+      view only.</p></div>
+    <div><h3>Music</h3><p>The YouTube Music player needs a big enough screen to stay visible, so it's hidden on phones;
+      play music from the phone's own app instead.</p></div>
+  </div>
+  <p><small>Last checked October 2026. Something not listed, or listed wrong? Tell us and we'll update this page.</small></p>
+</main>
+</body>
+</html>

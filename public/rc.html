@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04060c"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#04060c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RideWorld">
+<title>RideWorld remote</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* the redesign's look (2026-10-27): ink, glass, the orange-to-pink gradient, italic condensed numbers */
+:root { --bg:#04060c; --panel:rgba(255,255,255,.06); --line:rgba(255,255,255,.12); --fg:#f5f7fc; --muted:#a6b0c6; --accent:#ff6a1a; --ok:#34d399;
+  --grad:linear-gradient(120deg,#ff8a1e 0%,#ff5a3c 45%,#ff2e7e 100%); --num:"Barlow Semi Condensed",system-ui,sans-serif; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { margin:0; min-height:100vh; background:radial-gradient(60vmax 50vmax at 0% 0%, rgba(255,106,26,.22), transparent 60%), radial-gradient(60vmax 50vmax at 100% 100%, rgba(255,46,126,.18), transparent 60%), var(--bg); color:var(--fg); font:16px/1.3 Inter, system-ui, -apple-system, sans-serif; padding:12px 12px calc(16px + env(safe-area-inset-bottom)); user-select:none; }
+header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+h1 { margin:0; font-family:var(--num); font-style:italic; font-size:24px; font-weight:800; text-transform:uppercase; } h1 span { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+#conn { font-size:13px; color:var(--muted); } #conn.ok { color:var(--ok); }
+.stats { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:10px; }
+.stat { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:10px; text-align:center; box-shadow:inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter:blur(14px); }
+.stat b { display:block; font-family:var(--num); font-style:italic; font-weight:700; font-size:34px; font-variant-numeric:tabular-nums; } .stat small { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.06em; }
+#wo { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:10px 12px; margin-bottom:10px; font-size:15px; }
+#wo b { font-size:22px; } #wo .muted { color:var(--muted); font-size:13px; }
+.grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:10px; }
+button { font:inherit; font-weight:700; color:var(--fg); background:var(--panel); border:1px solid var(--line); border-radius:18px; min-height:68px; font-size:16px; padding:8px; box-shadow:inset 0 1px 0 rgba(255,255,255,.08); transition:transform .15s cubic-bezier(.2,.8,.2,1), background .15s; }
+button:active { background:rgba(255,255,255,.12); transform:scale(.96); }
+button.big { grid-column:span 3; min-height:76px; font-family:var(--num); font-style:italic; font-size:24px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; background:var(--grad); color:#fff; border-color:transparent; box-shadow:0 10px 26px rgba(255,70,80,.4), inset 0 1px 0 rgba(255,255,255,.3); }
+button.wide { grid-column:span 2; }
+button small { display:block; font-weight:500; font-size:12px; color:var(--muted); margin-top:2px; }
+h2 { font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:14px 2px 8px; }
+#shots { display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; }
+#shots a img { height:86px; border-radius:10px; border:1px solid var(--line); display:block; }
+.hidden { display:none !important; }
+#offline { background:#3a2410; border:1px solid #7a4614; color:#ffd2b0; border-radius:12px; padding:10px 12px; margin-bottom:10px; font-size:14px; }
+button.shot { grid-column:span 3; min-height:124px; font-size:30px; font-weight:800; background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.3); }
+#rep { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:12px; margin-bottom:10px; }
+#rep p { margin:4px 0 8px; font-size:13px; }
+#rep textarea { width:100%; box-sizing:border-box; font:inherit; font-size:16px; color:var(--fg); background:rgba(0,0,0,.25); border:1px solid var(--line); border-radius:12px; padding:10px; margin-bottom:8px; }
+#rep .grid { margin-bottom:0; } #rep button { min-height:52px; }
+#rep-ok { background:#10321f; border:1px solid #1f7a4a; color:#b6f0cf; border-radius:12px; padding:10px 12px; margin-bottom:10px; }
+/* open-world junction choice: BIG buttons (the owner) */
+#junc { margin:0 0 14px; padding:10px; border-radius:22px; border:2px solid rgba(255,61,154,.85); background:rgba(20,24,44,.6); box-shadow:0 0 22px rgba(255,61,154,.35); }
+#junc-head { text-align:center; color:var(--muted); font-size:15px; margin-bottom:8px; } #junc-head b { color:#fff; font-size:20px; }
+/* satnav (open worlds) */
+#nav { margin:0 0 14px; padding:12px; border-radius:22px; border:2px solid rgba(126,240,176,.7); background:rgba(20,24,44,.6); }
+#nav-now { display:flex; align-items:center; gap:10px; font-size:18px; }
+#nav-now b { color:#7ef0b0; font-size:24px; margin-left:auto; }
+#nav-to { font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#nav-turn { color:#ffd27a; font-size:15px; margin-top:6px; }
+#nav-off { min-height:44px; padding:6px 14px; }
+#nav-q { width:100%; font-size:18px; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.2); background:rgba(0,0,0,.3); color:#fff; box-sizing:border-box; }
+#nav-res { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+#nav-res button { display:flex; gap:10px; align-items:center; text-align:left; min-height:56px; font-size:17px; padding:8px 14px; }
+#nav-res button span:nth-child(2) { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#nav-res button small { opacity:.7; }
+.navrow { display:flex; gap:8px; } .navrow > button:first-child { flex:1; min-width:0; } .navrow .jump { min-width:64px; font-size:22px; justify-content:center; }
+#junc-ways { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:10px; }
+#junc-ways button { min-height:150px; font-size:19px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+#junc-ways button svg { width:64px; height:64px; fill:rgba(220,226,240,.35); stroke:rgba(230,234,248,.6); stroke-width:3; }
+#junc-ways button.on { background:linear-gradient(120deg,rgba(255,138,30,.55),rgba(255,46,126,.55)); border-color:#ff8a3c; }
+#junc-ways button.on svg { fill:#ff6fbc; stroke:#fff; }
+button.rec { grid-column:span 3; min-height:84px; font-size:22px; font-weight:800; }
+button.rec.on { background:rgba(200,20,30,.85); border-color:#ff5a5a; }
+.hidden { display:none !important; }
+</style></head>
+<body>
+<header><h1>Ride<span>World</span> remote</h1><span id="conn">connecting…</span></header>
+<div id="offline" class="hidden">No ride open. Start one on the PC (Go ride) with the same account, and this remote picks it up.</div>
+<div class="stats">
+  <div class="stat"><b id="power">–</b><small id="wkg">watts</small></div>
+  <div class="stat"><b id="hr">–</b><small>bpm</small></div>
+  <div class="stat"><b id="speed">–</b><small id="speedu">km/h</small></div>
+  <div class="stat"><b id="dist">–</b><small id="distu">km</small></div>
+  <div class="stat"><b id="time">–</b><small>time</small></div>
+  <div class="stat"><b id="grade">–</b><small>gradient</small></div>
+</div>
+<div id="wo" class="hidden"></div>
+<div id="rep" class="hidden">
+  <b>Report a problem here</b>
+  <p class="muted">The spot and the screen are saved. Keep riding, and say what's wrong:</p>
+  <textarea id="rep-note" rows="3" maxlength="2000" placeholder="e.g. road goes under a hedge"></textarea>
+  <div class="grid"><button id="rep-send" class="wide">Send report</button><button id="rep-cancel">Cancel</button></div>
+</div>
+<div id="rep-ok" class="hidden"></div>
+<div id="nav" class="hidden">
+  <div id="nav-cur" class="hidden"><div id="nav-now">🧭 <span id="nav-to"></span><b id="nav-left"></b><button id="nav-off" type="button">✕</button></div><div id="nav-turn" class="hidden">↩ Turning round is quicker</div></div>
+  <input id="nav-q" type="search" placeholder="🧭 Go to… a village, pub, street…" autocomplete="off" enterkeyhint="search">
+  <div id="nav-res"></div>
+</div>
+<div id="junc" class="hidden"><div id="junc-head">Junction in <b id="junc-m">–</b></div><div id="junc-ways"></div></div>
+<div class="grid">
+  <button class="big" data-cmd="pause" id="b-pause">Pause / resume</button>
+  <button class="shot" data-cmd="shot">📷 Screenshot</button>
+  <button class="rec" data-cmd="rec" id="b-rec">⏺ Record clip<small id="rec-note">the 3D view, stops by itself</small></button>
+  <button data-cmd="uturn" id="b-uturn" class="wide hidden">↩ Turn round<small>open world</small></button>
+  <button data-cmd="camera">🎥<small id="cam">camera</small></button>
+  <button data-cmd="chapeau">🎩<small>chapeau</small></button>
+  <button data-cmd="film">🎬<small id="film">film mode</small></button>
+  <button id="b-report">⚑<small>report</small></button>
+  <button id="b-finish" class="wide">🏁 Finish ride<small>save / Strava on the PC</small></button>
+</div>
+<div id="arrive" class="hidden">
+  <h2>End of the route</h2>
+  <div class="grid">
+    <button data-cmd="turn" class="wide">↩ Turn round<small>and keep riding</small></button>
+    <button data-cmd="finishhere" class="wide">🏁 Finish here</button>
+  </div>
+</div>
+<div id="gear-ctl" class="hidden">
+  <h2>Gear <b id="gear-now">12</b>/24</h2>
+  <div class="grid">
+    <button data-cmd="geardown">−<small>easier gear</small></button>
+    <button data-cmd="gearup">+<small>harder gear</small></button>
+  </div>
+</div>
+<div id="wo-ctl" class="hidden">
+  <h2>Workout</h2>
+  <div class="grid">
+    <button data-cmd="easier">−5%<small>easier</small></button>
+    <button data-cmd="harder">+5%<small>harder</small></button>
+    <button data-cmd="skip">Skip ▶<small>interval</small></button>
+    <button data-cmd="erg" class="wide" id="b-erg">ERG on / off</button>
+  </div>
+</div>
+<div id="sim-ctl" class="hidden">
+  <h2>Simulator</h2>
+  <div class="grid"><button data-cmd="down">−10 W</button><button data-cmd="up" class="wide">+10 W</button></div>
+</div>
+<h2>Sound &amp; view</h2>
+<div class="grid">
+  <button data-cmd="prev">⏮<small>last song</small></button>
+  <button data-cmd="music">⏯<small>music</small></button>
+  <button data-cmd="next">⏭<small>next song</small></button>
+  <button data-cmd="sound">🔊<small>ride sounds</small></button>
+  <button data-cmd="clean" class="wide">🛣 Clean road<small>on / off</small></button>
+</div>
+<div id="music-now" class="muted"></div>
+<div id="music-list" class="grid"></div>
+<h2>Screenshots</h2>
+<div class="grid"><button id="b-photos" class="wide" style="grid-column:span 3">📸 Photos of my last ride<small>save to the phone, ready for Strava</small></button></div>
+<p id="photos-msg" style="color:var(--muted);font-size:14px;margin:4px 0 10px"></p>
+<h3 style="margin:14px 0 6px;font-size:16px">🎬 My clips</h3>
+<div id="clips" style="display:flex;flex-direction:column;gap:8px"></div>
+<p id="clips-msg" style="color:var(--muted);font-size:14px;margin:4px 0 10px"></p>
+<div id="shots"><span style="color:var(--muted);font-size:14px">Taken with 📷 above: tap one to open it, then save.</span></div>
+<script type="module" src="js/rc.js"></script>
+</body></html>

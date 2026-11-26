@@ -1,0 +1,39 @@
+{
+ "note": "Tardebigge from over the top pound's north bank: the moored narrowboats, the rider on the towpath, St Bartholomew's on its hill behind; box -2.0145,52.3194,-2.0012,52.3248",
+ "box": [
+  -2.0145,
+  52.3194,
+  -2.0012,
+  52.3248
+ ],
+ "cam": [
+  -138,
+  -50.5,
+  5.0
+ ],
+ "at": [
+  -50,
+  -138,
+  -3
+ ],
+ "lens": 22,
+ "rider": {
+  "xy": [
+   -121,
+   -61.6
+  ],
+  "heading": 193,
+  "frame": 8
+ },
+ "sun": {
+  "elev": 34,
+  "az": 235
+ },
+ "focus": 18,
+ "fstop": 5.6,
+ "size": [
+  1600,
+  1152
+ ],
+ "shift": -0.14
+}

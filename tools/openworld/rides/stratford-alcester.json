@@ -1,0 +1,380 @@
+[
+ {
+  "id": "stratford-town",
+  "name": "Shakespeare's Stratford",
+  "blurb": "Over Clopton Bridge, past the theatre and Holy Trinity, out to Anne Hathaway's Cottage at Shottery and back.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   [
+    52.1935,
+    -1.7065
+   ],
+   [
+    52.187,
+    -1.705
+   ],
+   "Shottery",
+   [
+    52.195,
+    -1.714
+   ]
+  ],
+  "names": [
+   "Clopton Bridge",
+   "Bridge Street",
+   "Holy Trinity",
+   "Shottery",
+   "Alcester Road"
+  ]
+ },
+ {
+  "id": "mary-arden",
+  "name": "Shottery to Wilmcote",
+  "blurb": "From Anne Hathaway's Cottage to Mary Arden's farm at Wilmcote, on to Aston Cantlow and back by Billesley.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Shottery",
+   "Wilmcote",
+   "Aston Cantlow",
+   "Billesley"
+  ],
+  "names": [
+   "Clopton Bridge"
+  ]
+ },
+ {
+  "id": "avon-valley",
+  "name": "Down the Avon",
+  "blurb": "Along the river through Luddington and Welford-on-Avon to Bidford, over its medieval bridge and home by Barton and Weston-on-Avon.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Luddington",
+   "Welford-on-Avon",
+   [
+    52.16432,
+    -1.85789
+   ],
+   [
+    52.1622,
+    -1.855
+   ],
+   "Barton",
+   "Welford-on-Avon",
+   "Weston-on-Avon"
+  ],
+  "names": [
+   "Clopton Bridge",
+   null,
+   null,
+   "Bidford High Street",
+   "Bidford Bridge"
+  ]
+ },
+ {
+  "id": "aqueducts",
+  "name": "Two aqueducts",
+  "blurb": "Under the Edstone Aqueduct, England's longest, and past the Wootton Wawen aqueduct, back over the hills by Bearley and Snitterfield.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Bishopton",
+   "Wilmcote",
+   [
+    52.24605,
+    -1.76407
+   ],
+   [
+    52.264755,
+    -1.76909
+   ],
+   "Bearley",
+   "Snitterfield"
+  ],
+  "names": [
+   "Clopton Bridge",
+   null,
+   null,
+   "Edstone Aqueduct",
+   "Wootton Wawen aqueduct"
+  ]
+ },
+ {
+  "id": "alcester-arrow",
+  "name": "Alcester and the Alne valley",
+  "blurb": "North from Alcester through Coughton Fields to Great and Little Alne and Aston Cantlow, back over the hill at Haselor.",
+  "loop": true,
+  "via": [
+   [
+    52.2149,
+    -1.8706
+   ],
+   "Coughton Fields",
+   "Great Alne",
+   "Little Alne",
+   "Aston Cantlow",
+   "Haselor",
+   "Oversley Green"
+  ],
+  "names": [
+   "Alcester High Street"
+  ]
+ },
+ {
+  "id": "charlecote",
+  "name": "Charlecote and Hampton Lucy",
+  "blurb": "Out along the Avon to Charlecote Park, over the river at Hampton Lucy and home by Alveston.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Tiddington",
+   [
+    52.2058,
+    -1.6229
+   ],
+   "Hampton Lucy",
+   "Alveston"
+  ],
+  "names": [
+   "Clopton Bridge",
+   null,
+   "Charlecote Park"
+  ]
+ },
+ {
+  "id": "snitterfield",
+  "name": "Snitterfield hills",
+  "blurb": "The hilliest lanes on the map: up to Snitterfield, over to Bearley, on to Norton Lindsey, Wolverton and Langley, and back down through Snitterfield.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Snitterfield",
+   "Bearley",
+   "Norton Lindsey",
+   "Wolverton",
+   "Langley",
+   "Snitterfield"
+  ],
+  "names": [
+   "Clopton Bridge"
+  ]
+ },
+ {
+  "id": "bidford-flats",
+  "name": "Bidford Bridge and the flats",
+  "blurb": "Over Bidford's medieval bridge to the flat lanes south of the river: Marlcliff, Bickmarsh, Dorsington and Long Marston, back by Welford.",
+  "loop": true,
+  "via": [
+   [
+    52.16432,
+    -1.85789
+   ],
+   [
+    52.1622,
+    -1.855
+   ],
+   [
+    52.152731,
+    -1.859453
+   ],
+   "Bickmarsh",
+   "Dorsington",
+   "Long Marston",
+   "Welford-on-Avon"
+  ],
+  "names": [
+   "Bidford High Street",
+   "Bidford Bridge",
+   "Marlcliff",
+   null,
+   null,
+   null,
+   null
+  ]
+ },
+ {
+  "id": "stour",
+  "name": "The Stour villages",
+  "blurb": "South along the Stour: Clifford Chambers, Atherstone, Preston-on-Stour and Alderminster.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Clifford Chambers",
+   "Preston-on-Stour",
+   "Atherstone on Stour",
+   "Alderminster"
+  ],
+  "names": [
+   "Clopton Bridge"
+  ]
+ },
+ {
+  "id": "grand",
+  "name": "Grand tour",
+  "blurb": "A big loop: Wilmcote, the Edstone Aqueduct, Wootton Wawen, Great Alne and Alcester, home over Haselor and Billesley.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Wilmcote",
+   [
+    52.24605,
+    -1.76407
+   ],
+   [
+    52.264755,
+    -1.76909
+   ],
+   "Great Alne",
+   [
+    52.2149,
+    -1.8706
+   ],
+   "Haselor",
+   "Billesley",
+   "Shottery"
+  ],
+  "names": [
+   "Clopton Bridge",
+   null,
+   "Edstone Aqueduct",
+   "Wootton Wawen aqueduct",
+   null,
+   "Alcester"
+  ]
+ },
+ {
+  "id": "avon-sprint",
+  "name": "Avon sprint",
+  "blurb": "Short, flat and fast: along the Avon to Tiddington and Alveston and back.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Tiddington",
+   "Alveston"
+  ],
+  "names": [
+   "Clopton Bridge"
+  ]
+ },
+ {
+  "id": "welcombe-hills",
+  "name": "Welcombe and Ingon hills",
+  "blurb": "The best climbing on the map: up the Warwick Road and Ingon Lane, over Hatton Rock, round by Langley and back down through Snitterfield.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "street:Warwick Road",
+   "street:Ingon Lane",
+   "Hatton Rock",
+   "street:Hatton Bank Lane",
+   "Snitterfield",
+   "street:Langley Road",
+   "Langley",
+   "Snitterfield"
+  ],
+  "names": [
+   "Clopton Bridge"
+  ]
+ },
+ {
+  "id": "warwickshire100",
+  "name": "The Warwickshire 100",
+  "blurb": "A long day through every corner: the Stour villages, Long Marston, Welford, Bidford, Alcester, the Alne valley, both aqueducts and Charlecote.",
+  "loop": true,
+  "via": [
+   [
+    52.1925,
+    -1.7042
+   ],
+   "Clifford Chambers",
+   "Preston-on-Stour",
+   "Alderminster",
+   "Atherstone on Stour",
+   "Long Marston",
+   "Dorsington",
+   "Welford-on-Avon",
+   [
+    52.16432,
+    -1.85789
+   ],
+   "Shottery",
+   [
+    52.2149,
+    -1.8706
+   ],
+   "Coughton Fields",
+   "Great Alne",
+   "Aston Cantlow",
+   [
+    52.24605,
+    -1.76407
+   ],
+   [
+    52.264755,
+    -1.76909
+   ],
+   "Wolverton",
+   "Snitterfield",
+   "Hampton Lucy",
+   [
+    52.2058,
+    -1.6229
+   ],
+   "Tiddington"
+  ],
+  "names": [
+   "Clopton Bridge",
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   "Bidford-on-Avon",
+   "Shottery",
+   "Alcester",
+   null,
+   null,
+   null,
+   "Edstone Aqueduct",
+   "Wootton Wawen aqueduct",
+   null,
+   null,
+   null,
+   "Charlecote Park"
+  ]
+ }
+]

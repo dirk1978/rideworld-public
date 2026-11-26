@@ -1,0 +1,614 @@
+[
+ {
+  "ref": "58",
+  "name": "Tardebigge Top Lock",
+  "len": 23.84,
+  "fall": 3.23,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.49,
+    "right": 9
+   },
+   "down": {
+    "left": 5.07,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "57",
+  "name": "",
+  "len": 24.41,
+  "fall": 2.22,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 2.63,
+    "right": 9
+   },
+   "down": {
+    "left": 2.37,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "56",
+  "name": "",
+  "len": 24.42,
+  "fall": 2.17,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.19,
+    "right": 9
+   },
+   "down": {
+    "left": 5.15,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "55",
+  "name": "",
+  "len": 24.54,
+  "fall": 2.06,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.89,
+    "right": 9
+   },
+   "down": {
+    "left": 5.5,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "54",
+  "name": "",
+  "len": 24.44,
+  "fall": 2.14,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.03,
+    "right": 9
+   },
+   "down": {
+    "left": 3.93,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "53",
+  "name": "",
+  "len": 24.15,
+  "fall": 2.07,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.41,
+    "right": 9
+   },
+   "down": {
+    "left": 2.49,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "52",
+  "name": "",
+  "len": 24.29,
+  "fall": 2.11,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.82,
+    "right": 9
+   },
+   "down": {
+    "left": 5.29,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "51",
+  "name": "",
+  "len": 23.63,
+  "fall": 2.15,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.38,
+    "right": 9
+   },
+   "down": {
+    "left": 2.86,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "50",
+  "name": "",
+  "len": 24.5,
+  "fall": 2.18,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.13,
+    "right": 5.74
+   },
+   "down": {
+    "left": 2.49,
+    "right": 5.17
+   }
+  }
+ },
+ {
+  "ref": "49",
+  "name": "",
+  "len": 23.38,
+  "fall": 2.12,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 6.2,
+    "right": 9
+   },
+   "down": {
+    "left": 5.31,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "48",
+  "name": "",
+  "len": 23.98,
+  "fall": 2.19,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.66,
+    "right": 9
+   },
+   "down": {
+    "left": 4.66,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "47",
+  "name": "",
+  "len": 24.78,
+  "fall": 2.16,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.86,
+    "right": 9
+   },
+   "down": {
+    "left": 4.77,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "46",
+  "name": "",
+  "len": 24.47,
+  "fall": 2.17,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.59,
+    "right": 9
+   },
+   "down": {
+    "left": 2.22,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "45",
+  "name": "",
+  "len": 23.89,
+  "fall": 2.03,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.94,
+    "right": 9
+   },
+   "down": {
+    "left": 4.14,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "44",
+  "name": "",
+  "len": 24.47,
+  "fall": 2.12,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.61,
+    "right": 9
+   },
+   "down": {
+    "left": 4.5,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "43",
+  "name": "",
+  "len": 24.32,
+  "fall": 2.16,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.02,
+    "right": 9
+   },
+   "down": {
+    "left": 4.15,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "42",
+  "name": "",
+  "len": 24.36,
+  "fall": 2.19,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5,
+    "right": 9
+   },
+   "down": {
+    "left": 4.35,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "41",
+  "name": "",
+  "len": 24.46,
+  "fall": 2.15,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.4,
+    "right": 9
+   },
+   "down": {
+    "left": 5.21,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "40",
+  "name": "",
+  "len": 24.29,
+  "fall": 2.04,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.12,
+    "right": 9
+   },
+   "down": {
+    "left": 3.8,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "39",
+  "name": "",
+  "len": 24.88,
+  "fall": 2.22,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.25,
+    "right": 9
+   },
+   "down": {
+    "left": 3.37,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "38",
+  "name": "",
+  "len": 23.96,
+  "fall": 2.09,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.19,
+    "right": 9
+   },
+   "down": {
+    "left": 3.79,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "37",
+  "name": "",
+  "len": 24.2,
+  "fall": 2.07,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.37,
+    "right": 9
+   },
+   "down": {
+    "left": 3.55,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "36",
+  "name": "",
+  "len": 24.23,
+  "fall": 2.6,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.56,
+    "right": 9
+   },
+   "down": {
+    "left": 4.6,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "35",
+  "name": "",
+  "len": 24.32,
+  "fall": 1.67,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.09,
+    "right": 9
+   },
+   "down": {
+    "left": 3.06,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "34",
+  "name": "",
+  "len": 24.39,
+  "fall": 2.28,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.66,
+    "right": 9
+   },
+   "down": {
+    "left": 3.29,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "33",
+  "name": "",
+  "len": 23.35,
+  "fall": 2.06,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.22,
+    "right": 9
+   },
+   "down": {
+    "left": 3.18,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "32",
+  "name": "",
+  "len": 24.36,
+  "fall": 2.15,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.22,
+    "right": 9
+   },
+   "down": {
+    "left": 4.25,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "31",
+  "name": "",
+  "len": 24.57,
+  "fall": 2.18,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.17,
+    "right": 9
+   },
+   "down": {
+    "left": 3.46,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "30",
+  "name": "",
+  "len": 24.27,
+  "fall": 2.15,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 6.66,
+    "right": 9
+   },
+   "down": {
+    "left": 5.72,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "29",
+  "name": "",
+  "len": 23.99,
+  "fall": 2.11,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 6.26,
+    "right": 9
+   },
+   "down": {
+    "left": 5.99,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "28",
+  "name": "",
+  "len": 24.03,
+  "fall": 2.04,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.9,
+    "right": 9
+   },
+   "down": {
+    "left": 3.8,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "27",
+  "name": "",
+  "len": 23,
+  "fall": 2.15,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.3,
+    "right": 9
+   },
+   "down": {
+    "left": 4.14,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "26",
+  "name": "",
+  "len": 24.2,
+  "fall": 2.84,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 5.13,
+    "right": 9
+   },
+   "down": {
+    "left": 2.99,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "25",
+  "name": "",
+  "len": 24.91,
+  "fall": 1.48,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 4.79,
+    "right": 9
+   },
+   "down": {
+    "left": 2.92,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "24",
+  "name": "",
+  "len": 23.89,
+  "fall": 1.89,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 3.6,
+    "right": 9
+   },
+   "down": {
+    "left": 3.56,
+    "right": 9
+   }
+  }
+ },
+ {
+  "ref": "23",
+  "name": "Stoke Bottom Lock",
+  "len": 24.11,
+  "fall": 2.37,
+  "tow": "left",
+  "reach": {
+   "up": {
+    "left": 6.08,
+    "right": 9
+   },
+   "down": {
+    "left": 4.79,
+    "right": 9
+   }
+  }
+ }
+]

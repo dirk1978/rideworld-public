@@ -1,0 +1,52 @@
+{
+ "note": "flavour 'shire': the countryside palette (buildings.js default, not London's) with the city-world ride behaviour (openworld.js: no per-piece span corrections; bridges take their own deck heights). Landmarks to add: the Edstone Aqueduct, Clopton Bridge, Bidford Bridge, Holy Trinity, the RSC theatre.",
+ "flavour": "shire",
+ "landmarks": [
+  {
+   "model": "edstone",
+   "dir": "shire",
+   "lat": 52.24647,
+   "lon": -1.76412,
+   "heading": 176,
+   "level": "canal",
+   "note": "the Edstone (Bearley) Aqueduct, OSM 49649684, 157 m running 176 deg",
+   "title": "Edstone Aqueduct",
+   "blurb": "England's longest aqueduct, 1816"
+  },
+  {
+   "model": "wootton",
+   "dir": "shire",
+   "lat": 52.264755,
+   "lon": -1.76909,
+   "heading": 229.6,
+   "level": "canal",
+   "note": "Wootton Wawen Aqueduct over the A3400, OSM 15220445, 36 m",
+   "title": "Wootton Wawen Aqueduct",
+   "blurb": "Carries the Stratford Canal over the A3400"
+  },
+  {
+   "model": "bidford",
+   "dir": "shire",
+   "lat": 52.1639288,
+   "lon": -1.8566121,
+   "heading": 0,
+   "ground": 31,
+   "deckWidth": 4.2,
+   "deckRoad": "Bidford Bridge",
+   "note": "Bidford Bridge (15th c., Grade I), tools/kit/shire.py bidford from tools/kit/bidford-line.json (the bridge's line and deck heights from the world file, origin its middle); the owner's photos 2026-11-20",
+   "title": "Bidford Bridge",
+   "blurb": "The 15th-century bridge over the Avon"
+  },
+  {
+   "model": "clopton",
+   "dir": "shire",
+   "lat": 52.191591,
+   "lon": -1.700324,
+   "heading": 0,
+   "ground": 38.6,
+   "note": "Clopton Bridge (c. 1490, Grade I), tools/kit/shire.py clopton from tools/kit/clopton-line.json (the Clopton Bridge piece's line and deck heights, origin its middle); 14 arches, two lanes (the road's own 7.5 m deck) (2026-11-21)",
+   "title": "Clopton Bridge",
+   "blurb": "Stratford's 15th-century stone bridge over the Avon"
+  }
+ ]
+}

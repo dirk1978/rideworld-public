@@ -1,0 +1,208 @@
+{
+ "note": "Bromsgrove. No flavour: the world's look and ride behaviour stay exactly as built; only these models are added and the buildings they replace removed. The Queen's Head (Stoke Pound) from the owner's Street View photos 2026-11-18: tools/kit/bromsgrove.py queens_head.",
+ "landmarks": [
+  {
+   "model": "queens_head",
+   "dir": "bromsgrove",
+   "lat": 52.309216,
+   "lon": -2.057295,
+   "heading": 0,
+   "hide": "footprint",
+   "note": "the Queen's Head Inn, Sugarbrook Lane by Stoke Pound bridge; model origin = the OSM footprint's centre",
+   "title": "The Queen's Head",
+   "blurb": "The canalside pub at Stoke Pound"
+  },
+  {
+   "model": "tardebigge_church",
+   "dir": "bromsgrove",
+   "lat": 52.3203583,
+   "lon": -2.0078734,
+   "heading": 0,
+   "hide": "footprint",
+   "near": 6000,
+   "note": "St Bartholomew's, Tardebigge (1777, Francis Hiorn): the spire over the lock flight; origin = the OSM footprint's centre (w121519283), tools/kit/bromsgrove.py tardebigge_church; loaded within 6 km so it shows from the whole flight (2026-11-21)",
+   "title": "St Bartholomew's, Tardebigge",
+   "blurb": "Built 1777; its spire looks over the lock flight"
+  },
+  {
+   "model": "engine_house",
+   "dir": "bromsgrove",
+   "lat": 52.31874,
+   "lon": -2.01855,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     52.318619,
+     -2.018748
+    ]
+   ],
+   "note": "Tardebigge Engine House by lock 57 (tools/kit/bromsgrove.py engine_house, on OSM footprint 3365; the owner's Street View captures 2026-11-21); replaces the generated building",
+   "title": "Tardebigge Engine House",
+   "blurb": "Built 1823 to pump water up to the summit pound"
+  },
+  {
+   "model": "tardebigge_tunnel",
+   "dir": "bromsgrove",
+   "lat": 52.3224634,
+   "lon": -2.0061605,
+   "heading": 115.9,
+   "ground": 137.63,
+   "note": "Tardebigge Tunnel west portal (OSM way 23548900's end; the summit pound's level; faces down the canal), tools/kit/bromsgrove.py tardebigge_tunnel, the owner's photo 2026-11-21",
+   "title": "Tardebigge Tunnel",
+   "blurb": "580 yards long, opened 1810"
+  },
+  {
+   "model": "hanbury_turn",
+   "dir": "bromsgrove",
+   "lat": 52.314203,
+   "lon": -2.078331,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     52.314076,
+     -2.078258
+    ],
+    [
+     52.313914,
+     -2.078272
+    ],
+    [
+     52.314212,
+     -2.078449
+    ]
+   ],
+   "note": "The Hanbury Turn pub, Redditch Road / Hanbury Road (tools/kit/bromsgrove.py hanbury_turn, from the owner's photos 2026-11-21: share photos/to model/hanbury turn); replaces OSM's three footprints there",
+   "title": "The Hanbury Turn"
+  },
+  {
+   "model": "black_cross",
+   "dir": "bromsgrove",
+   "lat": 52.33197,
+   "lon": -2.064791,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     52.3318189,
+     -2.0649865
+    ]
+   ],
+   "note": "Ye Olde Black Cross, 68 Worcester Road, with the run of buildings on its OSM footprint (world building 3469): tools/kit/bromsgrove.py black_cross (tools/kit/pubkit.py), the owner's Street View captures 2026-11-22; origin = the pub's place point (just outside the footprint, so hideAt)",
+   "title": "Ye Olde Black Cross",
+   "blurb": "Charles II stopped here in 1651, fleeing after the Battle of Worcester"
+  },
+  {
+   "model": "ewe_and_lamb",
+   "dir": "bromsgrove",
+   "lat": 52.311477,
+   "lon": -2.076735,
+   "heading": 0,
+   "hide": "footprint",
+   "note": "The Ewe & Lamb, Hanbury Road (world building 1621): tools/kit/bromsgrove.py ewe_and_lamb, the owner's Street View captures 2026-11-22; origin = the pub's place point",
+   "title": "The Ewe & Lamb"
+  },
+  {
+   "model": "ladybird",
+   "dir": "bromsgrove",
+   "lat": 52.323036,
+   "lon": -2.047947,
+   "heading": 0,
+   "hide": "footprint",
+   "note": "The Ladybird Inn, New Road / Finstall Road (world building 5999): tools/kit/bromsgrove.py ladybird, the owner's Street View captures 2026-11-22; origin = the pub's place point",
+   "title": "The Ladybird Inn"
+  },
+  {
+   "model": "nailers_yard",
+   "dir": "bromsgrove",
+   "lat": 52.33359,
+   "lon": -2.06334,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     52.3335276,
+     -2.0625844
+    ]
+   ],
+   "note": "Nailers Yard (finished 2026): the office / restaurant building (world building 10393) and the market hall (3478, OSM 'pavilion'), tools/kit/bromsgrove.py nailers_yard; the owner's drone video 4:34-5:09, GJS Dillon particulars, Street View (built finished, no hoardings)",
+   "title": "Nailers Yard",
+   "blurb": "On the old Market Hall site, named for the town's nail-making past"
+  },
+  {
+   "model": "bromsgrove_station",
+   "dir": "bromsgrove",
+   "lat": 52.3201581,
+   "lon": -2.0499793,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     52.3205381,
+     -2.0501116
+    ],
+    [
+     52.3199175,
+     -2.0502262
+    ],
+    [
+     52.3199627,
+     -2.0503144
+    ]
+   ],
+   "near": 2500,
+   "note": "Bromsgrove station (rebuilt 2016): ticket hall (world building 1075), the double-arrow tower, footbridge, lift towers, platforms; tools/kit/bromsgrove.py bromsgrove_station, the owner's drone video 8:14-9:04; origin = the station's OSM point",
+   "title": "Bromsgrove Station",
+   "blurb": "Rebuilt 2016, at the foot of the Lickey Incline (1 in 37.7)"
+  },
+  {
+   "model": "artrix",
+   "dir": "bromsgrove",
+   "lat": 52.338698,
+   "lon": -2.051544,
+   "heading": 0,
+   "hide": "footprint",
+   "note": "Artrix arts centre, School Drive (world building 3501): tools/kit/bromsgrove.py artrix, the owner's drone video ~7:00-7:40; origin = the OSM building's centre",
+   "title": "Artrix",
+   "blurb": "Arts centre for theatre, dance and music"
+  },
+  {
+   "model": "st_johns",
+   "dir": "bromsgrove",
+   "lat": 52.33415,
+   "lon": -2.064666,
+   "heading": 0,
+   "hide": "footprint",
+   "near": 6000,
+   "note": "St John the Baptist (Grade I; spire 206 ft 4 in to the weathercock): tools/kit/bromsgrove.py st_johns, the owner's drone video 3:36-4:22 and the listing; origin = the place point",
+   "title": "St John the Baptist",
+   "blurb": "Worcestershire's tallest spire: 206 ft 4 in to the weathercock"
+  },
+  {
+   "model": "victoria_ground",
+   "dir": "bromsgrove",
+   "lat": 52.3396307,
+   "lon": -2.05641995,
+   "heading": 0,
+   "hide": "footprint",
+   "hideAt": [
+    [
+     52.3398053,
+     -2.0569698
+    ],
+    [
+     52.3393792,
+     -2.0559892
+    ],
+    [
+     52.3400722,
+     -2.0559847
+    ]
+   ],
+   "note": "Bromsgrove Sporting FC's Victoria Ground: pitch, main stand, east stand, north terrace, south wall, floodlights; tools/kit/bromsgrove.py victoria_ground, the owner's drone video 6:06-6:54; origin = the OSM pitch's centre",
+   "title": "Victoria Ground",
+   "blurb": "Home of Bromsgrove Sporting FC"
+  }
+ ]
+}

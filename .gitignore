@@ -1,0 +1,11 @@
+certs/
+data/
+.env
+node_modules/
+__pycache__/
+*.pyc
+apps/windows/dist/
+apps/android/build/
+apps/android/.env
+apps/android/release.keystore
+*.apk

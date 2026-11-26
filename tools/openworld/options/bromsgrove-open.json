@@ -1,0 +1,60 @@
+{
+ "note": "Per-world build options (see london-central.json). dsmDecks: bridges within 40 m of these points follow the surveyed deck (DSM) instead of a straight line between their ends; added one at a time from the owner's reports so nothing else in Bromsgrove changes. bridgeRuns (2026-11-20): whole bridges on their surveyed decks, pieces joined (build.mjs; check with bridgecheck.mjs).",
+ "dsmDecks": [
+  {
+   "at": [
+    52.329437,
+    -2.019656
+   ],
+   "note": "Bromsgrove Highway (A448) over Tutnall Lane: report 20261117T112328, the deck sat at head height over the lane"
+  }
+ ],
+ "bridgeRuns": true,
+ "canal": {
+  "box": [
+   52.296,
+   -2.075,
+   52.33,
+   -1.995
+  ],
+  "osm": "data/cache/osm/bromsgrove.opl",
+  "note": "Tardebigge and Stoke flights (2026-11-21): canal.mjs writes world.canal, rebuilds the flight's water as level pounds and narrow chambers, and places the lock models (public/models/canal/bromsgrove-open, built by tools/kit/canal.py from tools/kit/canal-bromsgrove-open.json)",
+  "moorings": [
+   {
+    "lock": "58",
+    "above": true,
+    "from": 30,
+    "n": 6,
+    "gap": 20.5,
+    "note": "the summit pound by Tardebigge New Wharf, above Top Lock"
+   },
+   {
+    "lock": "57",
+    "above": true,
+    "from": 120,
+    "n": 2,
+    "gap": 21,
+    "note": "the long pound between locks 57 and 58"
+   },
+   {
+    "lock": "29",
+    "above": false,
+    "from": 60,
+    "n": 3,
+    "gap": 21,
+    "note": "the Stoke Pound pound by the Queen's Head"
+   }
+  ]
+ },
+ "footbridges": true,
+ "railDecks": true,
+ "rampThrough": true,
+ "serviceIn": [
+  [
+   52.3178,
+   -2.0532,
+   52.3232,
+   -2.0458
+  ]
+ ]
+}
